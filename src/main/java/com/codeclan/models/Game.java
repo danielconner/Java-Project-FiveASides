@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "games")
 public class Game {
-
+    private int id;
     private String title;
     private String venue;
     private Player organiser;
@@ -15,7 +15,9 @@ public class Game {
     private List<Player> invitedPlayers;
     private Day day;
     private String time;
-    private int id;
+
+    public Game() {
+    }
 
     public Game(String title, String venue, Player organiser, Day day, String time) {
         this.title = title;
@@ -45,7 +47,8 @@ public class Game {
         this.venue = venue;
     }
 
-    @Column(name = "organiser")
+    @ManyToOne
+    @JoinColumn(name="player_id", nullable=false)
     public Player getOrganiser() {
         return organiser;
     }
