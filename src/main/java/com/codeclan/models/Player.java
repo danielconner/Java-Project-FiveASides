@@ -6,9 +6,10 @@ public class Player {
     private String username;
     private String name;
     private List<Day> availability;
-    private List<Games> invitedGames;
-    private List<Games> signedUpForGames;
+    private List<Game> invitedGames;
+    private List<Game> signedUpForGames;
     private int gamesPlayed;
+    private int id;
 
 
     public Player() {
@@ -45,19 +46,19 @@ public class Player {
         this.availability = availability;
     }
 
-    public List<Games> getInvitedGames() {
+    public List<Game> getInvitedGames() {
         return invitedGames;
     }
 
-    public void setInvitedGames(List<Games> invitedGames) {
+    public void setInvitedGames(List<Game> invitedGames) {
         this.invitedGames = invitedGames;
     }
 
-    public List<Games> getSignedUpForGames() {
+    public List<Game> getSignedUpForGames() {
         return signedUpForGames;
     }
 
-    public void setSignedUpForGames(List<Games> signedUpForGames) {
+    public void setSignedUpForGames(List<Game> signedUpForGames) {
         this.signedUpForGames = signedUpForGames;
     }
 
@@ -67,5 +68,13 @@ public class Player {
 
     public void setGamesPlayed(int gamesPlayed) {
         this.gamesPlayed = gamesPlayed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
