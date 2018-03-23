@@ -9,17 +9,18 @@ import java.util.List;
 public class Player {
     private String username;
     private String name;
-    private List<Day> availability;
+    private Day availability;
     private List<Game> invitedGames;
     private List<Game> signedUpForGames;
     private int gamesPlayed;
     private int id;
+    private List<Game> organisedGames;
 
 
     public Player() {
     }
 
-    public Player(String username, String name, List<Day> availability, int gamesPlayed) {
+    public Player(String username, String name, Day availability, int gamesPlayed) {
         this.username = username;
         this.name = name;
         this.availability = availability;
@@ -45,11 +46,11 @@ public class Player {
     }
 
     @Column(name = "availability")
-    public List<Day> getAvailability() {
+    public Day getAvailability() {
         return availability;
     }
 
-    public void setAvailability(List<Day> availability) {
+    public void setAvailability(Day availability) {
         this.availability = availability;
     }
 
@@ -76,6 +77,7 @@ public class Player {
         this.signedUpForGames = signedUpForGames;
     }
 
+    @Column(name = "games_played")
     public int getGamesPlayed() {
         return gamesPlayed;
     }
@@ -93,5 +95,14 @@ public class Player {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @OneToMany(mappedBy = "players", fetch = FetchType.LAZY)
+    public List<Game> getOrganisedGames() {
+        return organisedGames;
+    }
+
+    public void setOrganisedGames(List<Game> organisedGames) {
+        this.organisedGames = organisedGames;
     }
 }

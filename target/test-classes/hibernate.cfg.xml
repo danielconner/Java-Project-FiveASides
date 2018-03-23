@@ -16,8 +16,6 @@
         <property name="hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>
 
-        <mapping class = "models.Book"/>
-        <mapping class = "models.Borrower"/>
 
     </session-factory>
 </hibernate-configuration>
