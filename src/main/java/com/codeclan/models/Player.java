@@ -9,7 +9,7 @@ import java.util.List;
 public class Player {
     private String username;
     private String name;
-    private Day availability;
+    private List<Day> availability;
     private List<Game> invitedGames;
     private List<Game> signedUpForGames;
     private int gamesPlayed;
@@ -20,7 +20,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(String username, String name, Day availability, int gamesPlayed) {
+    public Player(String username, String name, List<Day> availability, int gamesPlayed) {
         this.username = username;
         this.name = name;
         this.availability = availability;
@@ -45,12 +45,16 @@ public class Player {
         this.name = name;
     }
 
-    @Column(name = "availability")
-    public Day getAvailability() {
+    @ElementCollection(targetClass = Day.class)
+    @CollectionTable(
+            name = "player_availability", joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}
+    )
+    @Column(name = "enum_id")
+    public List<Day> getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Day availability) {
+    public void setAvailability(List<Day> availability) {
         this.availability = availability;
     }
 
