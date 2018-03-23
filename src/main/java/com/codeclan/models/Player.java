@@ -1,6 +1,10 @@
 package com.codeclan.models;
 
+import javax.persistence.*;
 import java.util.List;
+
+@Entity
+@Table(name = "players")
 
 public class Player {
     private String username;
@@ -22,6 +26,7 @@ public class Player {
         this.gamesPlayed = gamesPlayed;
     }
 
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -30,6 +35,7 @@ public class Player {
         this.username = username;
     }
 
+    @Column(name= "name")
     public String getName() {
         return name;
     }
@@ -38,6 +44,7 @@ public class Player {
         this.name = name;
     }
 
+    @Column(name = "availability")
     public List<Day> getAvailability() {
         return availability;
     }
@@ -46,6 +53,9 @@ public class Player {
         this.availability = availability;
     }
 
+    @ManyToMany
+    @JoinTable(name = "invited_players_invited_games",
+        joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
     public List<Game> getInvitedGames() {
         return invitedGames;
     }
@@ -53,6 +63,10 @@ public class Player {
     public void setInvitedGames(List<Game> invitedGames) {
         this.invitedGames = invitedGames;
     }
+
+    @ManyToMany
+    @JoinTable(name = "players_signed_up_games",
+            joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
 
     public List<Game> getSignedUpForGames() {
         return signedUpForGames;
@@ -70,6 +84,9 @@ public class Player {
         this.gamesPlayed = gamesPlayed;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
