@@ -9,6 +9,7 @@ public class Game {
     private String venue;
     private Player organiser;
     private List<Player> players;
+    private List<Player> invitedPlayers;
     private Day day;
     private String time;
     private int id;
@@ -20,6 +21,7 @@ public class Game {
         this.players = new ArrayList<Player>();
         this.day = day;
         this.time = time;
+        this.invitedPlayers = new ArrayList<Player>();
     }
 
     public String getTitle() {
@@ -76,5 +78,13 @@ public class Game {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Player> getInvitedPlayers() {
+        return invitedPlayers;
+    }
+
+    public void setInvitedPlayers(List<Player> invitedPlayers) {
+        this.invitedPlayers = invitedPlayers;
     }
 }
