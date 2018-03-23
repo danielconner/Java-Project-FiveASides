@@ -1,8 +1,11 @@
 package com.codeclan.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "games")
 public class Game {
 
     private String title;
@@ -24,6 +27,7 @@ public class Game {
         this.invitedPlayers = new ArrayList<Player>();
     }
 
+    @Column(name = "title")
     public String getTitle() {
         return title;
     }
@@ -32,6 +36,7 @@ public class Game {
         this.title = title;
     }
 
+    @Column(name = "venue")
     public String getVenue() {
         return venue;
     }
@@ -40,6 +45,7 @@ public class Game {
         this.venue = venue;
     }
 
+    @Column(name = "organiser")
     public Player getOrganiser() {
         return organiser;
     }
@@ -48,6 +54,10 @@ public class Game {
         this.organiser = organiser;
     }
 
+    @ManyToMany
+    @JoinTable(name = "players_signed_up_games",
+            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)})
     public List<Player> getPlayers() {
         return players;
     }
@@ -56,6 +66,7 @@ public class Game {
         this.players = players;
     }
 
+    @Column(name = "day")
     public Day getDay() {
         return day;
     }
@@ -64,6 +75,7 @@ public class Game {
         this.day = day;
     }
 
+    @Column(name = "time")
     public String getTime() {
         return time;
     }
@@ -72,6 +84,9 @@ public class Game {
         this.time = time;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -80,6 +95,10 @@ public class Game {
         this.id = id;
     }
 
+    @ManyToMany
+    @JoinTable(name = "invited_players_invited_games",
+            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)})
     public List<Player> getInvitedPlayers() {
         return invitedPlayers;
     }
