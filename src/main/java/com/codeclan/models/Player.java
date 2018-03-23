@@ -1,6 +1,10 @@
 package com.codeclan.models;
 
+import javax.persistence.*;
 import java.util.List;
+
+@Entity
+@Table(name = "players")
 
 public class Player {
     private String username;
@@ -10,6 +14,7 @@ public class Player {
     private List<Game> signedUpForGames;
     private int gamesPlayed;
     private int id;
+    private List<Game> organisedGames;
 
 
     public Player() {
@@ -22,6 +27,7 @@ public class Player {
         this.gamesPlayed = gamesPlayed;
     }
 
+    @Column(name = "username")
     public String getUsername() {
         return username;
     }
@@ -30,6 +36,7 @@ public class Player {
         this.username = username;
     }
 
+    @Column(name= "name")
     public String getName() {
         return name;
     }
@@ -38,6 +45,11 @@ public class Player {
         this.name = name;
     }
 
+    @ElementCollection(targetClass = Day.class)
+    @CollectionTable(
+            name = "player_availability", joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}
+    )
+    @Column(name = "enum_id")
     public List<Day> getAvailability() {
         return availability;
     }
@@ -46,6 +58,9 @@ public class Player {
         this.availability = availability;
     }
 
+    @ManyToMany
+    @JoinTable(name = "invited_players_invited_games",
+        joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
     public List<Game> getInvitedGames() {
         return invitedGames;
     }
@@ -53,6 +68,10 @@ public class Player {
     public void setInvitedGames(List<Game> invitedGames) {
         this.invitedGames = invitedGames;
     }
+
+    @ManyToMany
+    @JoinTable(name = "players_signed_up_games",
+            joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
 
     public List<Game> getSignedUpForGames() {
         return signedUpForGames;
@@ -62,6 +81,7 @@ public class Player {
         this.signedUpForGames = signedUpForGames;
     }
 
+    @Column(name = "games_played")
     public int getGamesPlayed() {
         return gamesPlayed;
     }
@@ -70,11 +90,23 @@ public class Player {
         this.gamesPlayed = gamesPlayed;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @OneToMany(mappedBy = "players", fetch = FetchType.LAZY)
+    public List<Game> getOrganisedGames() {
+        return organisedGames;
+    }
+
+    public void setOrganisedGames(List<Game> organisedGames) {
+        this.organisedGames = organisedGames;
     }
 }
