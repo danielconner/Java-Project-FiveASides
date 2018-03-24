@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class PlayerTest {
@@ -35,5 +36,13 @@ public class PlayerTest {
     @Test
     public void testNotAvailable() {
         assertFalse(player.playerAvailable(game2));
+    }
+
+    @Test
+    public void testCanSignUpToGame() {
+        assertEquals(0, player.getSignedUpForGames().size());
+        player.signUpForGame(game);
+        assertEquals(1, player.getSignedUpForGames().size());
+
     }
 }

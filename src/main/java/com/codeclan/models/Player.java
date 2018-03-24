@@ -1,6 +1,7 @@
 package com.codeclan.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,8 @@ public class Player {
         this.name = name;
         this.availability = availability;
         this.gamesPlayed = gamesPlayed;
+        this.signedUpForGames = new ArrayList<>();
+        this.invitedGames = new ArrayList<>();
     }
 
     @Column(name = "username")
@@ -117,5 +120,9 @@ public class Player {
             }
         }
         return false;
+    }
+
+    public void signUpForGame(Game game) {
+        signedUpForGames.add(game);
     }
 }
