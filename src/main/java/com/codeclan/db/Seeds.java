@@ -16,13 +16,13 @@ public class Seeds {
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
         davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23);
+        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23, "Glasgow");
         DBHelper.save(player1);
 
         List<Day> stevesAvailabilty = new ArrayList<>();
         stevesAvailabilty.add(Day.WEDNESDAY);
         stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4);
+        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4, "Glasgow");
         DBHelper.save(player2);
 
         Game game1 =  new Game("Daveys Game", "Townhead", player1, Day.THURSDAY, "19:00");

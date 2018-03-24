@@ -23,10 +23,12 @@ public class PlayerTest {
         availability = new ArrayList<Day>();
         availability.add(Day.TUESDAY);
         availability.add(Day.WEDNESDAY);
-        player = new Player("bob10", "Bob", availability, 0);
+        player = new Player("bob10", "Bob", availability, 0, "Glasgow");
         game = new Game("Bob's kickabout", "Townhead", player, Day.TUESDAY, "20:00");
         game2 = new Game("Bob's kickabout", "Townhead", player, Day.FRIDAY, "20:00");
     }
+
+
 
     @Test
     public void testIsAvailable() {
@@ -43,6 +45,30 @@ public class PlayerTest {
         assertEquals(0, player.getSignedUpForGames().size());
         player.signUpForGame(game);
         assertEquals(1, player.getSignedUpForGames().size());
+    }
 
+    @Test
+    public void canGetUserName() {
+        assertEquals("bob10", player.getUsername());
+    }
+
+    @Test
+    public void canGetName() {
+        assertEquals("Bob", player.getName());
+    }
+
+    @Test
+    public void canGetAvailability() {
+        assertTrue(player.getAvailability().contains(Day.TUESDAY));
+    }
+
+    @Test
+    public void canGetGamesPlayed() {
+        assertEquals(0, player.getGamesPlayed());
+    }
+
+    @Test
+    public void canGetLocation() {
+        assertEquals("Glasgow", player.getLocation());
     }
 }
