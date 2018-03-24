@@ -17,24 +17,27 @@ public class Runner {
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
         davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23);
+        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23, "Glasgow");
         DBHelper.save(player1);
 
         List<Day> stevesAvailabilty = new ArrayList<>();
         stevesAvailabilty.add(Day.WEDNESDAY);
         stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4);
+        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 41, "Glasgow");
         DBHelper.save(player2);
 
-        Game game1 =  new Game("Daveys Game", "Townhead", player1, Day.THURSDAY, "19:00");
+        Game game1 =  new Game("Daveys Game", "Edinburgh", player1, Day.THURSDAY, "19:00");
         DBHelper.save(game1);
 
-        Game game2 =  new Game("Steves Game", "Townhead", player2, Day.TUESDAY, "20:30");
+        Game game2 =  new Game("Steves Game", "Glasgow", player2, Day.TUESDAY, "20:30");
         DBHelper.save(game2);
 
         List<Player> players = DBHelper.getAll(Player.class);
         Player player = DBHelper.find(player1.getId(), Player.class);
         List<Game> games = DBHelper.getAll(Game.class);
+
+        List<Player> sortedByGamesPlayed = DBHelper.sortPlayersByMostGamesPlayed();
+        List<Game> gamesBasedByVenue = DBHelper.gamesBasedOnLocation("Glasgow");
 
 
     }

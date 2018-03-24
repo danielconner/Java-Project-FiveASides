@@ -15,19 +15,21 @@ public class Player {
     private List<Game> signedUpForGames;
     private int gamesPlayed;
     private int id;
+    private String location;
     private List<Game> organisedGames;
 
 
     public Player() {
     }
 
-    public Player(String username, String name, List<Day> availability, int gamesPlayed) {
+    public Player(String username, String name, List<Day> availability, int gamesPlayed, String location) {
         this.username = username;
         this.name = name;
         this.availability = availability;
         this.gamesPlayed = gamesPlayed;
         this.signedUpForGames = new ArrayList<>();
         this.invitedGames = new ArrayList<>();
+        this.location = location;
     }
 
     @Column(name = "username")
@@ -124,5 +126,14 @@ public class Player {
 
     public void signUpForGame(Game game) {
         signedUpForGames.add(game);
+    }
+
+    @Column(name = "location")
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
