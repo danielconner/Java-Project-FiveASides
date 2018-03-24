@@ -109,4 +109,13 @@ public class Player {
     public void setOrganisedGames(List<Game> organisedGames) {
         this.organisedGames = organisedGames;
     }
+
+    public boolean playerAvailable(Game game) {
+        for (Day day : availability) {
+            if (day == game.getDay()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
