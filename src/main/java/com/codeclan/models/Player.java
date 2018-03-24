@@ -1,6 +1,7 @@
 package com.codeclan.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,7 +10,7 @@ import java.util.List;
 public class Player {
     private String username;
     private String name;
-    private Day availability;
+    private List<Day> availability;
     private List<Game> invitedGames;
     private List<Game> signedUpForGames;
     private int gamesPlayed;
@@ -20,11 +21,13 @@ public class Player {
     public Player() {
     }
 
-    public Player(String username, String name, Day availability, int gamesPlayed) {
+    public Player(String username, String name, List<Day> availability, int gamesPlayed) {
         this.username = username;
         this.name = name;
         this.availability = availability;
         this.gamesPlayed = gamesPlayed;
+        this.signedUpForGames = new ArrayList<>();
+        this.invitedGames = new ArrayList<>();
     }
 
     @Column(name = "username")
@@ -45,12 +48,16 @@ public class Player {
         this.name = name;
     }
 
-    @Column(name = "availability")
-    public Day getAvailability() {
+    @ElementCollection(targetClass = Day.class)
+    @CollectionTable(
+            name = "player_availability", joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}
+    )
+    @Column(name = "enum_id")
+    public List<Day> getAvailability() {
         return availability;
     }
 
-    public void setAvailability(Day availability) {
+    public void setAvailability(List<Day> availability) {
         this.availability = availability;
     }
 
@@ -104,5 +111,18 @@ public class Player {
 
     public void setOrganisedGames(List<Game> organisedGames) {
         this.organisedGames = organisedGames;
+    }
+
+    public boolean playerAvailable(Game game) {
+        for (Day day : availability) {
+            if (day == game.getDay()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void signUpForGame(Game game) {
+        signedUpForGames.add(game);
     }
 }

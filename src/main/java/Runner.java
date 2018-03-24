@@ -17,13 +17,13 @@ public class Runner {
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
         davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", Day.THURSDAY, 23);
+        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23);
         DBHelper.save(player1);
 
         List<Day> stevesAvailabilty = new ArrayList<>();
         stevesAvailabilty.add(Day.WEDNESDAY);
         stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis",Day.TUESDAY , 4);
+        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4);
         DBHelper.save(player2);
 
         Game game1 =  new Game("Daveys Game", "Townhead", player1, Day.THURSDAY, "19:00");
@@ -33,9 +33,8 @@ public class Runner {
         DBHelper.save(game2);
 
         List<Player> players = DBHelper.getAll(Player.class);
+        Player player = DBHelper.find(player1.getId(), Player.class);
         List<Game> games = DBHelper.getAll(Game.class);
-
-
 
 
     }
