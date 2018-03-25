@@ -106,7 +106,7 @@ public class Player {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "players", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "players", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     public List<Game> getOrganisedGames() {
         return organisedGames;
     }
