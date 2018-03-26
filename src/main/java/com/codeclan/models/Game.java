@@ -9,7 +9,7 @@ import java.util.List;
 public class Game {
     private int id;
     private String title;
-    private String venue;
+    private Venue venue;
     private Player organiser;
     private List<Player> players;
     private List<Player> invitedPlayers;
@@ -19,7 +19,7 @@ public class Game {
     public Game() {
     }
 
-    public Game(String title, String venue, Player organiser, Day day, String time) {
+    public Game(String title, Venue venue, Player organiser, Day day, String time) {
         this.title = title;
         this.venue = venue;
         this.organiser = organiser;
@@ -38,12 +38,12 @@ public class Game {
         this.title = title;
     }
 
-    @Column(name = "venue")
-    public String getVenue() {
-        return venue;
+    @ManyToOne
+    @JoinColumn(name = "venue_id", nullable = false)
+    public Venue getVenue() { return venue;
     }
 
-    public void setVenue(String venue) {
+    public void setVenue(Venue venue) {
         this.venue = venue;
     }
 

@@ -1,6 +1,7 @@
 import com.codeclan.models.Day;
 import com.codeclan.models.Game;
 import com.codeclan.models.Player;
+import com.codeclan.models.Venue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,14 +16,16 @@ public class GameTest {
     Game game;
     Player player;
     List<Day> availability;
+    Venue venue;
 
     @Before
     public void setUp() throws Exception {
         availability = new ArrayList<Day>();
         availability.add(Day.TUESDAY);
         availability.add(Day.WEDNESDAY);
+        venue = new Venue("Powerleague Townhead", "Glasgow");
         player = new Player("bob10", "Bob", availability, 0, "Glasgow");
-        game = new Game("Bob's kickabout", "Townhead", player, Day.TUESDAY, "20:00");
+        game = new Game("Bob's kickabout", venue, player, Day.TUESDAY, "20:00");
     }
 
     @Test
@@ -32,7 +35,7 @@ public class GameTest {
 
     @Test
     public void canGetVenue() {
-        assertEquals("Townhead", game.getVenue());
+        assertEquals("Powerleague Townhead", game.getVenue().getName());
     }
 
     @Test
