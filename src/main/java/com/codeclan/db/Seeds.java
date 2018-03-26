@@ -22,17 +22,17 @@ public class Seeds {
         List<Day> stevesAvailabilty = new ArrayList<>();
         stevesAvailabilty.add(Day.WEDNESDAY);
         stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4, "Glasgow");
-        DBHelper.save(player2);
-
-        Game game1 =  new Game("Daveys Game", "Townhead", player1, Day.THURSDAY, "19:00");
-        DBHelper.save(game1);
-
-        Game game2 =  new Game("Steves Game", "Townhead", player2, Day.TUESDAY, "20:30");
-        DBHelper.save(game2);
-
-        List<Player> players = DBHelper.getAll(Player.class);
-        List<Game> games = DBHelper.getAll(Game.class);
+//        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 4, "Glasgow");
+//        DBHelper.save(player2);
+//
+//        Game game1 =  new Game("Daveys Game", "Townhead", player1, Day.THURSDAY, "19:00");
+//        DBHelper.save(game1);
+//
+//        Game game2 =  new Game("Steves Game", "Townhead", player2, Day.TUESDAY, "20:30");
+//        DBHelper.save(game2);
+//
+//        List<Player> players = DBHelper.getAll(Player.class);
+//        List<Game> games = DBHelper.getAll(Game.class);
 
 
 
