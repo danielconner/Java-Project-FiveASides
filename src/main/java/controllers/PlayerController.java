@@ -31,17 +31,7 @@ public class PlayerController {
         }, new VelocityTemplateEngine());
 
         get("/players/filter", (req, res) -> {
-<<<<<<< HEAD
-            String result = req.queryParams("day");
-            Map<String, Object> model = new HashMap<>();
-            model.put("day", result);
-            model.put("templates", "templates/Player/filter_by_day.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
 
-
-
-=======
             List<Player> players = DBHelper.getAll(Player.class);
             String result = req.queryParams("day");
             Map<String, Object> model = new HashMap<>();
@@ -56,7 +46,6 @@ public class PlayerController {
             model.put("templates", "templates/Player/filter_by_day");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
->>>>>>> 86924003526b67811af7f102365388e462ed6562
 
     }
 }
