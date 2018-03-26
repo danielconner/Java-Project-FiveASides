@@ -1,4 +1,14 @@
 <p>PLAYERS</p>
+
+<form action="players/$day.getDay" method = "post">
+    <label for="day">Day: </label>
+    <select name="day" id="day">
+        #foreach ($day in $days)
+        <option value="#day">$day.getDay()</option>
+        #end
+    </select>
+    <input type="submit" value = "Filter Players">
+</form>
 <table>
     <tr>
         <th>Name: </th>
