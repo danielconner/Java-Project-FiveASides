@@ -21,6 +21,7 @@ public class MainController {
 
         LoginController loginController = new LoginController();
         PlayerController playerController = new PlayerController();
+        GameController gameController = new GameController();
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();

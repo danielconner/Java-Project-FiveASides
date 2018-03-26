@@ -81,9 +81,10 @@ public class Game {
     }
 
     @Column(name = "day")
-    public String getDay() {
-        return this.day.getDay();
+    public Day getDay() {
+        return day;
     }
+
 
     public void setDay(Day day) {
         this.day = day;

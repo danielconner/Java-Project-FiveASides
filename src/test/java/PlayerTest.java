@@ -87,5 +87,8 @@ public class PlayerTest {
         assertEquals("Glasgow", player.getLocation());
     }
 
-
+    @Test
+    public void canCovertEnumToString() {
+        assertTrue(player.convertEnum(player).contains("tuesday"));
+    }
 }
