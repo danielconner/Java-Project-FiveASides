@@ -138,6 +138,24 @@ public class Player {
         this.location = location;
     }
 
+    public boolean availableOnDay(Day day) {
+        for (Day dayAvailable : availability) {
+            if (dayAvailable == day) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean playerByDay(String stringDay) {
+        for (Day day : availability) {
+            if (day.getDay().equals(stringDay)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public List<String> convertEnum(Player player) {
         List<Day> results = player.getAvailability();
