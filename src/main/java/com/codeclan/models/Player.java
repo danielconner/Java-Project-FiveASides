@@ -53,7 +53,7 @@ public class Player {
     @CollectionTable(
             name = "player_availability", joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}
     )
-    @Column(name = "enum_id")
+    @Column(name = "day_id")
     public List<Day> getAvailability() {
         return availability;
     }
@@ -134,5 +134,14 @@ public class Player {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public boolean playerAvailableOnSpecificDay(Day searchDay) {
+        for (Day day : availability) {
+            if (day == searchDay ) {
+                return true;
+            }
+        }
+        return false;
     }
 }

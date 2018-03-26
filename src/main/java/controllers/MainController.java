@@ -20,6 +20,7 @@ public class MainController {
         staticFileLocation("/public");
 
         LoginController loginController = new LoginController();
+        PlayerController playerController = new PlayerController();
 
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();

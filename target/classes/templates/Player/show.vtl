@@ -1,0 +1,20 @@
+<p>PLAYERS</p>
+
+<table>
+<tr>
+    <th>Name: </th>
+    <th>Location: </th>
+    <th>Games Played: </th>
+</tr>
+
+#foreach ($player in $players)
+
+<tr>
+    <td>$player.name</td>
+    <td>$player.location</td>
+    <td>$player.gamesPlayed</td>
+</tr>
+
+#end
+
+</table>

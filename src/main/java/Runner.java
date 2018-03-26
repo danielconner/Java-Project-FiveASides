@@ -44,6 +44,8 @@ public class Runner {
         List<Player> sortedByGamesPlayed = DBHelper.sortPlayersByMostGamesPlayed();
         List<Game> upDatedGames = DBHelper.getAll(Game.class);
 
+        List<Player> availableThursday = DBHelper.filterByAvailability(Day.THURSDAY);
+
 
 
     }

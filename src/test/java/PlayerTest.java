@@ -74,4 +74,10 @@ public class PlayerTest {
     public void canGetLocation() {
         assertEquals("Glasgow", player.getLocation());
     }
+
+    @Test
+    public void testAvailabilityOnSpecificDay() {
+        assertTrue(player.playerAvailableOnSpecificDay(Day.TUESDAY));
+        assertFalse(player.playerAvailableOnSpecificDay(Day.SATURDAY));
+    }
 }
