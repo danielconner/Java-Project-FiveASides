@@ -1,5 +1,6 @@
 package com.codeclan.db;
 
+import com.codeclan.models.Day;
 import com.codeclan.models.Game;
 import com.codeclan.models.Player;
 import org.hibernate.Criteria;
@@ -123,6 +124,25 @@ public class DBHelper {
         List<Game> results = null;
         Criteria cr = session.createCriteria(Game.class);
         cr.add(Restrictions.eq("venue", venue));
+        results = getList(cr);
+        return results;
+    }
+
+//    public static List<Player> filterByAvailability(Day day){
+//        session = HibernateUtil.getSessionFactory().openSession();
+//        List<Player> results = null;
+//        Criteria cr = session.createCriteria(Player.class);
+//        cr.createAlias("availability", "availability");
+//        cr.proje("availability.id", availability));
+//        results = getList(cr);
+//        return results;
+//    }
+
+    public static List<Player> filterByAvailability(Day day){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Player> results = null;
+        Criteria cr = session.createCriteria(Player.class);
+        cr.add(Restrictions.like("availability", day));
         results = getList(cr);
         return results;
     }
