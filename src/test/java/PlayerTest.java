@@ -91,4 +91,10 @@ public class PlayerTest {
     public void canCovertEnumToString() {
         assertTrue(player.convertEnum(player).contains("tuesday"));
     }
+
+    @Test
+    public void canCheckAvailabilityByString() {
+        assertTrue(player.playerByDay("tuesday"));
+        assertFalse(player.playerByDay("saturday"));
+    }
 }
