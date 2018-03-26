@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "venues")
-
 public class Venue {
 
     private String location;
@@ -20,7 +19,6 @@ public class Venue {
     public Venue(String name, String location) {
         this.location = location;
         this.name = name;
-        this.games = new ArrayList<>();
     }
 
     @Column(name = "location")
@@ -52,7 +50,7 @@ public class Venue {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "venues", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "venues", fetch = FetchType.EAGER)
     public List<Game> getGames() {
         return games;
     }

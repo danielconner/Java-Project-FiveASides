@@ -26,7 +26,7 @@ public class PlayerTest {
         availability.add(Day.TUESDAY);
         availability.add(Day.WEDNESDAY);
         venue = new Venue("Powerleague Townhead", "Glasgow");
-        player = new Player("bob10", "Bob", availability, 0, "Glasgow");
+        player = new Player("bob10", "Bob", availability, "Glasgow");
         game = new Game("Bob's kickabout", venue, player, Day.TUESDAY, "20:00");
         game2 = new Game("Bob's kickabout", venue, player, Day.FRIDAY, "20:00");
     }

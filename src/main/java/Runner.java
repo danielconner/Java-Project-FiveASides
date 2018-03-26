@@ -18,13 +18,13 @@ public class Runner {
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
         davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23, "Glasgow");
+        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, "Glasgow");
         DBHelper.save(player1);
 
         List<Day> stevesAvailabilty = new ArrayList<>();
         stevesAvailabilty.add(Day.WEDNESDAY);
         stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , 41, "Glasgow");
+        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty , "Glasgow");
         DBHelper.save(player2);
         Venue venue1 = new Venue("Powerleague Edinburgh", "Edinburgh");
         Venue venue2 = new Venue("Powerleague Townhead", "Glasgow");

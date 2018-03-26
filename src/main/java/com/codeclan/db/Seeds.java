@@ -16,7 +16,7 @@ public class Seeds {
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
         davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, 23, "Glasgow");
+        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, "Glasgow");
         DBHelper.save(player1);
 
         List<Day> stevesAvailabilty = new ArrayList<>();
