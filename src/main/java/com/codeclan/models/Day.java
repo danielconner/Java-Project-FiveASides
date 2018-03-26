@@ -19,5 +19,7 @@ public enum Day {
     public String getDay() {
         return day;
     }
+
+
 }
 

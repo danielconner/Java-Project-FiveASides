@@ -19,6 +19,8 @@ public class PlayerController {
         get("/players", (req, res) -> {
             List<Player> players = DBHelper.getAll(Player.class);
             Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
             List<Day> days = new ArrayList<>();
             Collections.addAll(days, Day.values());
             model.put("days", days);
@@ -26,5 +28,9 @@ public class PlayerController {
             model.put("template", "templates/Player/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
+
+
     }
 }
