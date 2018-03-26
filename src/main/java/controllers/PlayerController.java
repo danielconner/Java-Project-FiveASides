@@ -29,6 +29,14 @@ public class PlayerController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/players/filter", (req, res) -> {
+            String result = req.queryParams("day");
+            Map<String, Object> model = new HashMap<>();
+            model.put("day", result);
+            model.put("templates", "templates/Player/filter_by_day.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
 
 
 
