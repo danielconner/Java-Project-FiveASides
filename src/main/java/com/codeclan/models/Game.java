@@ -40,8 +40,7 @@ public class Game {
 
     @ManyToOne
     @JoinColumn(name = "venue_id", nullable = false)
-    public Venue getVenue() {
-        return venue;
+    public Venue getVenue() { return venue;
     }
 
     public void setVenue(Venue venue) {

@@ -42,7 +42,6 @@ public class Runner {
         List<Game> games = DBHelper.getAll(Game.class);
 
         List<Player> sortedByGamesPlayed = DBHelper.sortPlayersByMostGamesPlayed();
-        List<Game> gamesBasedByVenue = DBHelper.gamesBasedOnLocation("Glasgow");
         List<Game> upDatedGames = DBHelper.getAll(Game.class);
 
 

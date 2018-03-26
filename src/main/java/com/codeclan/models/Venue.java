@@ -50,7 +50,8 @@ public class Venue {
         this.id = id;
     }
 
-    @OneToMany(mappedBy = "venues", fetch = FetchType.EAGER)
+
+    @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
     public List<Game> getGames() {
         return games;
     }
