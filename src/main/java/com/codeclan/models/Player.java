@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "players")
-
 public class Player {
     private String username;
     private String name;
@@ -22,11 +21,11 @@ public class Player {
     public Player() {
     }
 
-    public Player(String username, String name, List<Day> availability, int gamesPlayed, String location) {
+    public Player(String username, String name, List<Day> availability, String location) {
         this.username = username;
         this.name = name;
         this.availability = availability;
-        this.gamesPlayed = gamesPlayed;
+        this.gamesPlayed = 0;
         this.signedUpForGames = new ArrayList<>();
         this.invitedGames = new ArrayList<>();
         this.location = location;
