@@ -17,7 +17,6 @@ public class LoginController {
     public LoginController() {
         this.setupEndpoints();
     }
-    //    these two generate a login session and the bottom for logout(check layout file
 
     private void setupEndpoints() {
         post("/login", (req, res) -> {
@@ -39,15 +38,13 @@ public class LoginController {
         }, new VelocityTemplateEngine());
     }
 
-//    this is a function to check to see if there is a username
-
     public static String getLoggedInUserName(Request req, Response res){
         String username = req.session().attribute("username");
         if(username == null || username.isEmpty()){
             res.redirect("/login");
         }
         return username;
-    };
+    }
 
 
 

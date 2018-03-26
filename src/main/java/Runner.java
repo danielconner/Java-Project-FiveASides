@@ -31,10 +31,10 @@ public class Runner {
         DBHelper.save(venue1);
         DBHelper.save(venue2);
 
-        Game game1 =  new Game("Daveys Game", venue1, player1, Day.THURSDAY, "19:00");
+        Game game1 =  new Game("Daveys Game", venue1, player1, 3, Day.THURSDAY, "19:00");
         DBHelper.save(game1);
 
-        Game game2 =  new Game("Steves Game", venue2, player2, Day.TUESDAY, "20:30");
+        Game game2 =  new Game("Steves Game", venue2, player2, 1, Day.TUESDAY, "20:30");
         DBHelper.save(game2);
 
         List<Player> players = DBHelper.getAll(Player.class);
