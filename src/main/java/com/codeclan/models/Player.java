@@ -116,15 +116,17 @@ public class Player {
 
     public boolean playerAvailable(Game game) {
         for (Day day : availability) {
-            if (day == game.getDay()) {
+            if (day.getDay() == game.getDay()) {
                 return true;
             }
         }
         return false;
     }
 
-    public void signUpForGame(Game game) {
-        signedUpForGames.add(game);
+    public void signUpForGame(Game game, Player player) {
+        if (game.addPlayers(player) == true) {
+            signedUpForGames.add(game);
+        }
     }
 
     @Column(name = "location")
@@ -135,4 +137,6 @@ public class Player {
     public void setLocation(String location) {
         this.location = location;
     }
+
+
 }

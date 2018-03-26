@@ -27,8 +27,8 @@ public class PlayerTest {
         availability.add(Day.WEDNESDAY);
         venue = new Venue("Powerleague Townhead", "Glasgow");
         player = new Player("bob10", "Bob", availability, "Glasgow");
-        game = new Game("Bob's kickabout", venue, player, Day.TUESDAY, "20:00");
-        game2 = new Game("Bob's kickabout", venue, player, Day.FRIDAY, "20:00");
+        game = new Game("Bob's kickabout", venue, player, 3, Day.TUESDAY, "20:00");
+        game2 = new Game("Bob's kickabout", venue, player, 4,  Day.FRIDAY, "20:00");
     }
 
 
@@ -46,8 +46,20 @@ public class PlayerTest {
     @Test
     public void testCanSignUpToGame() {
         assertEquals(0, player.getSignedUpForGames().size());
-        player.signUpForGame(game);
+        player.signUpForGame(game, player);
         assertEquals(1, player.getSignedUpForGames().size());
+    }
+
+    @Test
+    public void canNotSignUpForAGame() {
+       Player player1 = new Player("bob10", "Bob", availability, "Glasgow");
+       Player player2 = new Player("Jonny", "Jonathan", availability, "Glasgow");
+       Game game1 = new Game("Bob's kickabout", venue, player, 1, Day.THURSDAY, "20:00");
+       player1.signUpForGame(game1, player1);
+       assertEquals(1, player1.getSignedUpForGames().size());
+       player2.signUpForGame(game1, player2);
+       assertEquals(0, player2.getSignedUpForGames().size());
+
     }
 
     @Test
@@ -74,4 +86,6 @@ public class PlayerTest {
     public void canGetLocation() {
         assertEquals("Glasgow", player.getLocation());
     }
+
+
 }
