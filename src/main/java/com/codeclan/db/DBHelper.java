@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -139,11 +140,18 @@ public class DBHelper {
 //    }
 
     public static List<Player> filterByAvailability(Day day){
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<Player> results = null;
-        Criteria cr = session.createCriteria(Player.class);
-        cr.add(Restrictions.like("availability", day));
-        results = getList(cr);
-        return results;
-    }
+//        session = HibernateUtil.getSessionFactory().openSession();
+        List<Player> available = new ArrayList<Player>();
+        List<Player> players = DBHelper.getAll(Player.class);
+        for (Player player : players) {
+            if (player.playerAvailableOnSpecificDay(day)) {
+                available.add(player);}
+        }
+        return available;
+        }
+//        Criteria cr = session.createCriteria(Player.class);
+//        cr.add(Restrictions.like("availability", day));
+//        results = getList(cr);
+//        return results;
+//    }
 }
