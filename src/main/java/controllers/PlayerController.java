@@ -47,5 +47,6 @@ public class PlayerController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+
     }
 }
