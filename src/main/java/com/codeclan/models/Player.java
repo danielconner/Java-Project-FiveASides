@@ -116,7 +116,7 @@ public class Player {
 
     public boolean playerAvailable(Game game) {
         for (Day day : availability) {
-            if (day.getDay() == game.getDay()) {
+            if (day == game.getDay()) {
                 return true;
             }
         }
@@ -157,4 +157,12 @@ public class Player {
     }
 
 
+    public List<String> convertEnum(Player player) {
+        List<Day> results = player.getAvailability();
+        List<String> newDays = new ArrayList<>();
+        for (Day days : results){
+            newDays.add(days.getDay());
+        }
+        return newDays;
+    }
 }
