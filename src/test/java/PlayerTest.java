@@ -26,22 +26,22 @@ public class PlayerTest {
         availability.add(Day.TUESDAY);
         availability.add(Day.WEDNESDAY);
         venue = new Venue("Powerleague Townhead", "Glasgow");
-        player = new Player("bob10", "Bob", availability, "Glasgow");
+        player = new Player("bob10", "Bob", "Glasgow");
         game = new Game("Bob's kickabout", venue, player, 3, Day.TUESDAY, "20:00");
         game2 = new Game("Bob's kickabout", venue, player, 4,  Day.FRIDAY, "20:00");
     }
 
 
+//
+//    @Test
+//    public void testIsAvailable() {
+//        assertTrue(player.playerAvailable(game));
+//    }
 
-    @Test
-    public void testIsAvailable() {
-        assertTrue(player.playerAvailable(game));
-    }
-
-    @Test
-    public void testNotAvailable() {
-        assertFalse(player.playerAvailable(game2));
-    }
+//    @Test
+//    public void testNotAvailable() {
+//        assertFalse(player.playerAvailable(game2));
+//    }
 
     @Test
     public void testCanSignUpToGame() {
@@ -49,18 +49,18 @@ public class PlayerTest {
         player.signUpForGame(game);
         assertEquals(1, player.getSignedUpForGames().size());
     }
-
-    @Test
-    public void canNotSignUpForAGame() {
-       Player player1 = new Player("bob10", "Bob", availability, "Glasgow");
-       Player player2 = new Player("Jonny", "Jonathan", availability, "Glasgow");
-       Game game1 = new Game("Bob's kickabout", venue, player, 1, Day.THURSDAY, "20:00");
-       player1.signUpForGame(game1);
-       assertEquals(1, player1.getSignedUpForGames().size());
-       player2.signUpForGame(game1);
-       assertEquals(0, player2.getSignedUpForGames().size());
-
-    }
+//
+//    @Test
+//    public void canNotSignUpForAGame() {
+//       Player player1 = new Player("bob10", "Bob", availability, "Glasgow");
+//       Player player2 = new Player("Jonny", "Jonathan", availability, "Glasgow");
+//       Game game1 = new Game("Bob's kickabout", venue, player, 1, Day.THURSDAY, "20:00");
+//       player1.signUpForGame(game1);
+//       assertEquals(1, player1.getSignedUpForGames().size());
+//       player2.signUpForGame(game1);
+//       assertEquals(0, player2.getSignedUpForGames().size());
+//
+//    }
 
     @Test
     public void canGetUserName() {
@@ -72,10 +72,10 @@ public class PlayerTest {
         assertEquals("Bob", player.getName());
     }
 
-    @Test
-    public void canGetAvailability() {
-        assertTrue(player.getAvailability().contains(Day.TUESDAY));
-    }
+//    @Test
+//    public void canGetAvailability() {
+//        assertTrue(player.getAvailability().contains(Day.TUESDAY));
+//    }
 
     @Test
     public void canGetGamesPlayed() {
@@ -87,14 +87,14 @@ public class PlayerTest {
         assertEquals("Glasgow", player.getLocation());
     }
 
-    @Test
-    public void canCovertEnumToString() {
-        assertTrue(player.convertEnum(player).contains("tuesday"));
-    }
-
-    @Test
-    public void canCheckAvailabilityByString() {
-        assertTrue(player.playerByDay("tuesday"));
-        assertFalse(player.playerByDay("saturday"));
-    }
+//    @Test
+//    public void canCovertEnumToString() {
+//        assertTrue(player.convertEnum(player).contains("tuesday"));
+//    }
+//
+//    @Test
+//    public void canCheckAvailabilityByString() {
+//        assertTrue(player.playerByDay("tuesday"));
+//        assertFalse(player.playerByDay("saturday"));
+//    }
 }

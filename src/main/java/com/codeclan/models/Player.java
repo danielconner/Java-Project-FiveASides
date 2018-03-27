@@ -2,16 +2,16 @@ package com.codeclan.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "players")
 public class Player {
     private String username;
     private String name;
-    private List<Day> availability;
-    private List<Game> invitedGames;
-    private List<Game> signedUpForGames;
+    private Set<Game> signedUpForGames;
     private int gamesPlayed;
     private int id;
     private String location;
@@ -21,13 +21,11 @@ public class Player {
     public Player() {
     }
 
-    public Player(String username, String name, List<Day> availability, String location) {
+    public Player(String username, String name, String location) {
         this.username = username;
         this.name = name;
-        this.availability = availability;
         this.gamesPlayed = 0;
-        this.signedUpForGames = new ArrayList<>();
-        this.invitedGames = new ArrayList<>();
+        this.signedUpForGames = new HashSet<>();
         this.location = location;
     }
 
@@ -49,39 +47,15 @@ public class Player {
         this.name = name;
     }
 
-    @ElementCollection(targetClass = Day.class)
-    @CollectionTable(
-            name = "player_availability", joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}
-    )
-    @Column(name = "enum_id")
-    public List<Day> getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(List<Day> availability) {
-        this.availability = availability;
-    }
-
-    @ManyToMany
-    @JoinTable(name = "invited_players_invited_games",
-        joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
-    public List<Game> getInvitedGames() {
-        return invitedGames;
-    }
-
-    public void setInvitedGames(List<Game> invitedGames) {
-        this.invitedGames = invitedGames;
-    }
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "players_signed_up_games",
-            joinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)})
-
-    public List<Game> getSignedUpForGames() {
+            joinColumns = {@JoinColumn(name = "player_id")},
+            inverseJoinColumns = {@JoinColumn(name = "game_id")})
+    public Set<Game> getSignedUpForGames() {
         return signedUpForGames;
     }
 
-    public void setSignedUpForGames(List<Game> signedUpForGames) {
+    public void setSignedUpForGames(Set<Game> signedUpForGames) {
         this.signedUpForGames = signedUpForGames;
     }
 
@@ -114,22 +88,11 @@ public class Player {
         this.organisedGames = organisedGames;
     }
 
-    public boolean playerAvailable(Game game) {
-        for (Day day : availability) {
-            if (day == game.getDay()) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public void signUpForGame(Game game) {
             signedUpForGames.add(game);
     }
 
-    public void invitePlayer(Game game, Player player) {
-        player.invitedGames.add(game);
-    }
 
     @Column(name = "location")
     public String getLocation() {
@@ -141,32 +104,4 @@ public class Player {
     }
 
 
-    public boolean availableOnDay(Day day) {
-        for (Day dayAvailable : availability) {
-            if (dayAvailable == day) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public boolean playerByDay(String stringDay) {
-        for (Day day : availability) {
-            if (day.getDay().equals(stringDay)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public List<String> convertEnum(Player player) {
-        List<Day> results = player.getAvailability();
-        List<String> newDays = new ArrayList<>();
-        for (Day days : results){
-            newDays.add(days.getDay());
-        }
-        return newDays;
-    }
 }

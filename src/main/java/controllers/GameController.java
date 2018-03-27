@@ -85,7 +85,6 @@ public class GameController {
             Player player = game.getOrganiser();
             Integer requiredPlayers = game.getNumberOfRequiredPlayer();
             List<Player> signedUpPlayers = DBHelper.playersPlaying(game);
-            List<Player> invitedPlayers = DBHelper.invitedPlayers(game);
             String day = game.getDay().getDay();
             String time = game.getTime();
             Map<String, Object> model = new HashMap<>();
@@ -97,7 +96,6 @@ public class GameController {
             model.put("player", player);
             model.put("requiredPlayers", requiredPlayers);
             model.put("signedUpPlayers", signedUpPlayers);
-            model.put("invitedPlayers", invitedPlayers);
             model.put("day", day);
             model.put("time", time);
             model.put("template", "templates/Game/index.vtl");
@@ -128,6 +126,17 @@ public class GameController {
             game.setDay(day);
             game.setTime(time);
             DBHelper.save(game);
+            res.redirect("/games");
+            return null;
+        }, new VelocityTemplateEngine());
+
+        post("/games/:id/addplayer", (req, res) -> {
+            String stringGameId = req.params(":id");
+            Integer gameIntId = Integer.parseInt(stringGameId);
+            Game game = DBHelper.find(gameIntId, Game.class);
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            Player player = DBHelper.findByUsername(loggedInUser);
+            DBHelper.addPlayerToGame(player, game);
             res.redirect("/games");
             return null;
         }, new VelocityTemplateEngine());
