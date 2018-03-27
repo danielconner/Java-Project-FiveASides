@@ -1,3 +1,4 @@
+
 import com.codeclan.db.DBHelper;
 import com.codeclan.models.Day;
 import com.codeclan.models.Game;
@@ -34,8 +35,11 @@ public class Runner {
         DBHelper.addPlayerToGame(player2, game1);
 
         List<Game> gamesPlayerHasSignedUpFor = DBHelper.gamesPlayerHasSignedUpFor(player2);
+
+        List<Game> venuesGames = DBHelper.gamesAtVenue(venue1);
     }
 }
+
 //
 //
 //        DBHelper.invitePlayerToGame(player1, game2);

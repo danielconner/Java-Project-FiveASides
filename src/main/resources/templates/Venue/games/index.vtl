@@ -1,0 +1,24 @@
+<p>GAMES AT $venue.name, $venue.location</p>
+
+<table>
+    <tr>
+        <th>Title: </th>
+        <th>Venue: </th>
+        <th>Organiser: </th>
+        <th>Number of Players needed: </th>
+        <th>Day: </th>
+        <th>Time: </th>
+        <th>View Details</th>
+    </tr>
+    #foreach ($game in $games)
+    <tr>
+        <td>$game.getTitle()</td>
+        <td>$game.venue.getLocation()</td>
+        <td>$game.organiser.getUsername()</td>
+        <td>$game.getNumberOfRequiredPlayer()</td>
+        <td>$game.getDay()</td>
+        <td>$game.getTime()</td>
+        <td><a href="/games/$game.getId()">Click here</a></td>
+    </tr>
+    #end
+</table>

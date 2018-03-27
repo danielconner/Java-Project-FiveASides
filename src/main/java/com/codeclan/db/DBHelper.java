@@ -3,6 +3,7 @@ package com.codeclan.db;
 import com.codeclan.models.Day;
 import com.codeclan.models.Game;
 import com.codeclan.models.Player;
+import com.codeclan.models.Venue;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -147,14 +148,21 @@ public class DBHelper {
     }
 
 
+    public static void addPlayerToGame(Player player, Game game){
+        game.addPlayers(player);
+        player.signUpForGame(game);
+        save(player);
+        save(game);
+    }
 
-    public static List<Player> invitedPlayers(Game game){
+    public static List<Game> gamesAtVenue(Venue venue) {
         session = HibernateUtil.getSessionFactory().openSession();
-        Criteria cr = session.createCriteria(Player.class);
+        Criteria cr = session.createCriteria(Game.class);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        cr.createAlias("invitedGames", "invitedGames");
-        cr.add(Restrictions.eq("invitedGames.id", game.getId()));
+        cr.createAlias("venue", "venue");
+        cr.add(Restrictions.eq("venue.id", venue.getId()));
         return getList(cr);
+
     }
 
     public static List<Game> gamesPlayerHasSignedUpFor(Player player) {
@@ -163,14 +171,10 @@ public class DBHelper {
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         cr.createAlias("players", "players");
         cr.add(Restrictions.eq("players.id", player.getId()));
+
         return getList(cr);
     }
 
-    public static void addPlayerToGame(Player player, Game game){
-        game.addPlayers(player);
-        player.signUpForGame(game);
-        save(player);
-        save(game);
-    }
+    
 }
 
