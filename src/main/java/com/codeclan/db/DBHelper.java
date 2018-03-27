@@ -164,7 +164,6 @@ public class DBHelper {
         cr.createAlias("players", "players");
         cr.add(Restrictions.eq("players.id", player.getId()));
         return getList(cr);
-
     }
 
     public static void addPlayerToGame(Player player, Game game){
