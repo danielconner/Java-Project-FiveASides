@@ -30,26 +30,6 @@ public class PlayerController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/players/filter", (req, res) -> {
-
-            List<Player> players = DBHelper.getAll(Player.class);
-            String result = req.queryParams("day");
-            Day filteredDay = returnDayFromString(result);
-            Map<String, Object> model = new HashMap<>();
-            String loggedInUser = LoginController.getLoggedInUserName(req, res);
-            List<Player> filteredPlayers = new ArrayList<>();
-            for (Player player : players) {
-                if (player.availableOnDay(filteredDay)) {
-                    filteredPlayers.add(player);
-                }
-            }
-            model.put("filteredDay", filteredDay);
-            model.put("user", loggedInUser);
-            model.put("filteredPlayers", filteredPlayers);
-            model.put("templates", "templates/Player/filter_by_day.vtl");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
         post("/players", (req, res) -> {
             String username = req.queryParams("username");
             String name = req.queryParams("name");
@@ -67,6 +47,37 @@ public class PlayerController {
             res.redirect("/login");
             return null;
         });
+
+        get("/players/filter", (req, res) -> {
+
+            List<Player> players = DBHelper.getAll(Player.class);
+            String result = req.queryParams("day");
+            Day filteredDay = returnDayFromString(result);
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            List<Player> filteredPlayers = new ArrayList<>();
+            for (Player player : players) {
+                if (player.availableOnDay(filteredDay)) {
+                    filteredPlayers.add(player);
+                }
+            }
+            model.put("filteredDay", filteredDay);
+            model.put("user", loggedInUser);
+            model.put("filteredPlayers", filteredPlayers);
+            model.put("template", "templates/Player/filter_by_day.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("players/:id", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Player player = DBHelper.find(id, Player.class);
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
+            model.put("player", player);
+            model.put("template", "templates/Player/index.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
     }
 
     public Day returnDayFromString(String dayAsString) {
