@@ -11,15 +11,17 @@
 </form>
 <table>
     <tr>
+        <th>Username:</th>
         <th>Name: </th>
         <th>Location: </th>
-        <th>Games Played: </th>
+        <th>Player Details</th>
     </tr>
     #foreach ($player in $players)
     <tr>
-        <td><a href="/players/$player.id">$player.name</a></td>
-        <td>$player.location</td>
-        <td>$player.gamesPlayed</td>
+        <td>$player.getUsername()</td>
+        <td>$player.getName()</td>
+        <td>$player.getLocation()</td>
+        <td><a href="/players/$player.id" >Click Here</a></td>
     </tr>
     #end
 </table>

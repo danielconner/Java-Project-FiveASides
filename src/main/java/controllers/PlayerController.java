@@ -2,6 +2,7 @@ package controllers;
 
 import com.codeclan.db.DBHelper;
 import com.codeclan.models.Day;
+import com.codeclan.models.Game;
 import com.codeclan.models.Player;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -86,7 +87,9 @@ public class PlayerController {
             Player player = DBHelper.find(id, Player.class);
             Map<String, Object> model = new HashMap<>();
             String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            List<Game> games = DBHelper.gamesPlayerHasSignedUpFor(player);
             model.put("user", loggedInUser);
+            model.put("games", games);
             model.put("player", player);
             model.put("template", "templates/Player/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
