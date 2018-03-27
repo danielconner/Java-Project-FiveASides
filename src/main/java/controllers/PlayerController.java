@@ -34,15 +34,16 @@ public class PlayerController {
 
             List<Player> players = DBHelper.getAll(Player.class);
             String result = req.queryParams("day");
+            Day filteredDay = returnDayFromString(result);
             Map<String, Object> model = new HashMap<>();
             String loggedInUser = LoginController.getLoggedInUserName(req, res);
             List<Player> filteredPlayers = new ArrayList<>();
             for (Player player : players) {
-                if (player.playerByDay(result)) {
+                if (player.availableOnDay(filteredDay)) {
                     filteredPlayers.add(player);
                 }
             }
-            model.put("day", result);
+            model.put("filteredDay", filteredDay);
             model.put("user", loggedInUser);
             model.put("filteredPlayers", filteredPlayers);
             model.put("templates", "templates/Player/filter_by_day.vtl");
