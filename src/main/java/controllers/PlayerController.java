@@ -36,17 +36,30 @@ public class PlayerController {
             String location = req.queryParams("location");
 //            List<Day> days = new ArrayList<>();
 //            Collections.addAll(days, Day.values());
-            String availability[] = req.queryParams("availability").split(",");
+//            String availability[] = req.queryParams("availability").split(",");
             List<Day> availableDays = new ArrayList<>();
-            for (String dayAvailable : availability) {
-                Day day = returnDayFromString(dayAvailable);
-                availableDays.add(day);
-            }
+//            for (String dayAvailable : availability) {
+//                Day day = returnDayFromString(dayAvailable);
+//                availableDays.add(day);
+//            }
             Player newPlayer = new Player(username, name, availableDays, location);
             DBHelper.save(newPlayer);
             res.redirect("/login");
             return null;
         });
+
+        post("/players/:id/edit", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Player player = DBHelper.find(id, Player.class);
+            player.setUsername(req.queryParams("username"));
+            player.setName(req.queryParams("name"));
+            player.setLocation(req.queryParams("location"));
+            List<Day> availableDays = new ArrayList<>();
+            DBHelper.save(player);
+            String playerId = Integer.toString(id);
+            res.redirect("/players");
+            return null;
+        }, new VelocityTemplateEngine());
 
         get("/players/filter", (req, res) -> {
 
@@ -101,6 +114,7 @@ public class PlayerController {
             String loggedInUser = LoginController.getLoggedInUserName(req, res);
             model.put("template", "templates/Player/edit.vtl");
             model.put("user", loggedInUser);
+            model.put("player", player);
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
