@@ -40,7 +40,7 @@ public class Seeds {
 
         DBHelper.addPlayerToGame(player1, game1);
         DBHelper.invitePlayerToGame(player1, game2);
-        DBHelper.addPlayerToGame(player1, game1);
+
 
 
 
