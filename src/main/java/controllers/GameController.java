@@ -1,15 +1,17 @@
 package controllers;
 
 import com.codeclan.db.DBHelper;
+import com.codeclan.models.Day;
 import com.codeclan.models.Game;
+import com.codeclan.models.Player;
+import com.codeclan.models.Venue;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class GameController {
 
@@ -27,5 +29,44 @@ public class GameController {
             model.put("template", "templates/Game/show.vtl");
             return new ModelAndView(model,"templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        get("/games/organise-game", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            List<Day> days = new ArrayList<>();
+            Collections.addAll(days, Day.values());
+            List<Venue> venues = DBHelper.getAll(Venue.class);
+            model.put("user", loggedInUser);
+            model.put("venues", venues);
+            model.put("days", days);
+            model.put("template", "templates/Game/create.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+            }, new VelocityTemplateEngine());
+
+        post("/games", (req, res) -> {
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            Player organiser = DBHelper.findByUsername(loggedInUser);
+            String name = req.queryParams("name");
+            int venueId = Integer.parseInt(req.queryParams("venue"));
+            String time = req.queryParams("time");
+            int numberOfRequiredPlayer = Integer.parseInt(req.queryParams("numberOfRequiredPlayer"));
+            Day day = returnDayFromString(req.queryParams("day"));
+            Venue venue = DBHelper.find(venueId, Venue.class);
+            Game newGame = new Game(name, venue, organiser, numberOfRequiredPlayer, day, time);
+            DBHelper.save(newGame);
+            res.redirect("/games");
+            return null;
+        }, new VelocityTemplateEngine());
+
+    }
+
+    public Day returnDayFromString(String dayAsString) {
+        Day foundDay = null;
+        for (Day day : Day.values()) {
+            if (day.getDay().equals(dayAsString)) {
+                foundDay = day;
+            }
+        }
+        return foundDay;
     }
 }
