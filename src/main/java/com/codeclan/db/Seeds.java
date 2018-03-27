@@ -7,6 +7,7 @@ import com.codeclan.models.Venue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Seeds {
 
@@ -15,16 +16,10 @@ public class Seeds {
         DBHelper.deleteAll(Game.class);
         DBHelper.deleteAll(Venue.class);
 
-        List<Day> davesAvailabilty = new ArrayList<>();
-        davesAvailabilty.add(Day.THURSDAY);
-        davesAvailabilty.add(Day.FRIDAY);
-        Player player1 = new Player("DaveBoi", "David Graham", davesAvailabilty, "Glasgow");
+        Player player1 = new Player("DaveBoi", "David Graham", "Glasgow");
         DBHelper.save(player1);
 
-        List<Day> stevesAvailabilty = new ArrayList<>();
-        stevesAvailabilty.add(Day.WEDNESDAY);
-        stevesAvailabilty.add(Day.TUESDAY);
-        Player player2 = new Player("Stevey", "Steven Davis", stevesAvailabilty, "Glasgow");
+        Player player2 = new Player("Stevey", "Steven Davis",  "Glasgow");
         DBHelper.save(player2);
 
         Venue venue1 = new Venue("Powerleague Edinburgh", "Edinburgh");
@@ -39,12 +34,6 @@ public class Seeds {
         DBHelper.save(game2);
 
         DBHelper.addPlayerToGame(player1, game1);
-        DBHelper.invitePlayerToGame(player1, game2);
-
-
-
-
-
 
     }
 }

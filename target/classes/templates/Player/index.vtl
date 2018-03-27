@@ -1,0 +1,20 @@
+<p>PLAYER</p>
+
+<table>
+    <tr>
+        <th>Name: </th>
+        <th>Location: </th>
+        <th>Games Played: </th>
+    </tr>
+    <tr>
+        <td>$player.name</td>
+        <td>$player.location</td>
+        <td>$player.gamesPlayed</td>
+    </tr>
+</table>
+#if ($player.username == $user)
+<a href="/players/$player.id/edit">Edit Your Details</a>
+<form action="/players/$player.id/delete" method="post">
+    <input class="button" type="submit" value="Delete your account?">
+</form>
+#end

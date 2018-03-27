@@ -2,7 +2,9 @@ package com.codeclan.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "games")
@@ -12,8 +14,7 @@ public class Game {
     private Venue venue;
     private Player organiser;
     private int numberOfRequiredPlayer;
-    private List<Player> players;
-    private List<Player> invitedPlayers;
+    private Set<Player> players;
     private Day day;
     private String time;
 
@@ -25,10 +26,9 @@ public class Game {
         this.venue = venue;
         this.organiser = organiser;
         this.numberOfRequiredPlayer = numberOfRequiredPlayer;
-        this.players = new ArrayList<>();
-        this.day = day;
+        this.players = new HashSet<>();
         this.time = time;
-        this.invitedPlayers = new ArrayList<>();
+        this.day = day;
     }
 
     @Column(name = "title")
@@ -68,15 +68,15 @@ public class Game {
         this.numberOfRequiredPlayer = numberOfRequiredPlayer;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "players_signed_up_games",
-            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)})
-    public List<Player> getPlayers() {
+            joinColumns = {@JoinColumn(name = "game_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false)})
+    public Set<Player> getPlayers() {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(Set<Player> players) {
         this.players = players;
     }
 
@@ -110,29 +110,15 @@ public class Game {
         this.id = id;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "invited_players_invited_games",
-            joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)})
-    public List<Player> getInvitedPlayers() {
-        return invitedPlayers;
-    }
-
-    public void setInvitedPlayers(List<Player> invitedPlayers) {
-        this.invitedPlayers = invitedPlayers;
-    }
-
-
     public int updatedRequiredPlayers() {
        return this.numberOfRequiredPlayer - this.players.size();
     }
 
-    public Boolean addPlayers(Player player) {
+    public void addPlayers(Player player) {
         if(this.numberOfRequiredPlayer > this.players.size()){
                 this.players.add(player);
-                return true;
+                this.numberOfRequiredPlayer -= 1;
         }
-        else return false;
     }
 
     public int playerCount() {
@@ -140,11 +126,4 @@ public class Game {
     }
 
 
-    public void invitePlayer(Player player, Game game) {
-            this.invitedPlayers.add(player);
-    }
-
-    public int invitedPlayerCount() {
-        return this.invitedPlayers.size();
-    }
 }

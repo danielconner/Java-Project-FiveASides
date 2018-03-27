@@ -1,12 +1,12 @@
 <p>PLAYERS</p>
 
-<form action="players/filter" method = "get">
-    <label for="day">Day: </label>
-    <select name="day" id="day">
-        #foreach ($day in $days)
-        <option value="$day.getDay()">$day.getDay()</option>
-        #end
-    </select>
+<!--<form action="players/filter" method = "get">-->
+    <!--<label for="day">Day: </label>-->
+    <!--<select name="day" id="day">-->
+        <!--#foreach ($day in $days)-->
+        <!--<option value="$day.getDay()">$day.getDay()</option>-->
+        <!--#end-->
+    <!--</select>-->
     <input type="submit" value = "Filter Players">
 </form>
 <table>
@@ -17,7 +17,7 @@
     </tr>
     #foreach ($player in $players)
     <tr>
-        <td>$player.name</td>
+        <td><a href="/players/$player.id">$player.name</a></td>
         <td>$player.location</td>
         <td>$player.gamesPlayed</td>
     </tr>
