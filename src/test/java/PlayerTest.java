@@ -46,7 +46,7 @@ public class PlayerTest {
     @Test
     public void testCanSignUpToGame() {
         assertEquals(0, player.getSignedUpForGames().size());
-        player.signUpForGame(game, player);
+        player.signUpForGame(game);
         assertEquals(1, player.getSignedUpForGames().size());
     }
 
@@ -55,9 +55,9 @@ public class PlayerTest {
        Player player1 = new Player("bob10", "Bob", availability, "Glasgow");
        Player player2 = new Player("Jonny", "Jonathan", availability, "Glasgow");
        Game game1 = new Game("Bob's kickabout", venue, player, 1, Day.THURSDAY, "20:00");
-       player1.signUpForGame(game1, player1);
+       player1.signUpForGame(game1);
        assertEquals(1, player1.getSignedUpForGames().size());
-       player2.signUpForGame(game1, player2);
+       player2.signUpForGame(game1);
        assertEquals(0, player2.getSignedUpForGames().size());
 
     }

@@ -46,7 +46,7 @@ public class PlayerController {
             model.put("filteredDay", filteredDay);
             model.put("user", loggedInUser);
             model.put("filteredPlayers", filteredPlayers);
-            model.put("templates", "templates/Player/filter_by_day.vtl");
+            model.put("template", "templates/Player/filter_by_day.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 

@@ -137,4 +137,38 @@ public class DBHelper {
         return result;
     }
 
-}
+    public static List<Player> playersPlaying(Game game){
+        session =HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Player.class);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        cr.createAlias("signedUpForGames", "signedUpForGames");
+        cr.add(Restrictions.eq("signedUpForGames.id", game.getId()));
+        return getList(cr);
+    }
+
+    public static List<Player> invitedPlayers(Game game){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Player.class);
+        cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        cr.createAlias("invitedGames", "invitedGames");
+        cr.add(Restrictions.eq("invitedGames.id", game.getId()));
+        return getList(cr);
+    }
+
+
+
+    public static void addPlayerToGame(Player player, Game game){
+        game.addPlayers(player);
+        player.signUpForGame(game);
+        save(player);
+        save(game);
+    }
+
+    public static void invitePlayerToGame(Player player, Game game){
+        player.invitePlayer(game, player);
+        game.invitePlayer(player, game);
+        save(game);
+        save(player);
+    }
+
+    }
