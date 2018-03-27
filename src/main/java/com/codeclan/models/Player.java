@@ -123,10 +123,12 @@ public class Player {
         return false;
     }
 
-    public void signUpForGame(Game game, Player player) {
-        if (game.addPlayers(player) == true) {
+    public void signUpForGame(Game game) {
             signedUpForGames.add(game);
-        }
+    }
+
+    public void invitePlayer(Game game, Player player) {
+        player.invitedGames.add(game);
     }
 
     @Column(name = "location")

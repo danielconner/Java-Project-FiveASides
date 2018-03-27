@@ -51,7 +51,7 @@ public class Venue {
     }
 
 
-    @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     public List<Game> getGames() {
         return games;
     }

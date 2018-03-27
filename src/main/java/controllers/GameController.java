@@ -58,6 +58,33 @@ public class GameController {
             return null;
         }, new VelocityTemplateEngine());
 
+        get("/games/:id", (req, res) -> {
+            String stringGameId = req.params(":id");
+            Integer gameIntId = Integer.parseInt(stringGameId);
+            Game game = DBHelper.find(gameIntId, Game.class);
+            String title = game.getTitle();
+            Venue venue = game.getVenue();
+            Player player = game.getOrganiser();
+            Integer requiredPlayers = game.getNumberOfRequiredPlayer();
+            List<Player> signedUpPlayers = DBHelper.playersPlaying(game);
+            List<Player> invitedPlayers = DBHelper.invitedPlayers(game);
+            String day = game.getDay().getDay();
+            String time = game.getTime();
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
+            model.put("title", title);
+            model.put("venue", venue);
+            model.put("player", player);
+            model.put("requiredPlayers", requiredPlayers);
+            model.put("signedUpPlayers", signedUpPlayers);
+            model.put("invitedPlayers", invitedPlayers);
+            model.put("day", day);
+            model.put("time", time);
+            model.put("template", "templates/Game/index.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
     }
 
     public Day returnDayFromString(String dayAsString) {
