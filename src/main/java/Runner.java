@@ -10,7 +10,7 @@
 //public class Runner {
 //
 //    public static void main(String[] args) {
-
+//
 //        DBHelper.deleteAll(Game.class);
 //        DBHelper.deleteAll(Venue.class);
 //        DBHelper.deleteAll(Player.class);
