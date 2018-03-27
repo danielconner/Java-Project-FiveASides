@@ -4,6 +4,7 @@ import com.codeclan.db.DBHelper;
 import com.codeclan.models.Day;
 import com.codeclan.models.Game;
 import com.codeclan.models.Player;
+import com.codeclan.models.Venue;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.get;
@@ -111,6 +112,19 @@ public class PlayerController {
             model.put("template", "templates/Player/edit.vtl");
             model.put("user", loggedInUser);
             model.put("player", player);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+        get("/players/:id/games", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Player player = DBHelper.find(id, Player.class);
+            List<Game> games = DBHelper.gamesPlayerHasSignedUpFor(player);
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
+            model.put("games", games);
+            model.put("player", player);
+            model.put("template", "templates/Player/games.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
