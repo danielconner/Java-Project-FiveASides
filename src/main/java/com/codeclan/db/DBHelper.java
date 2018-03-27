@@ -1,5 +1,6 @@
 package com.codeclan.db;
 
+import com.codeclan.models.Day;
 import com.codeclan.models.Game;
 import com.codeclan.models.Player;
 import org.hibernate.Criteria;
@@ -126,4 +127,14 @@ public class DBHelper {
         results = getList(cr);
         return results;
     }
+
+    public static Player findByUsername(String username){
+        session =HibernateUtil.getSessionFactory().openSession();
+        Player result = null;
+        Criteria cr = session.createCriteria(Player.class);
+        cr.add(Restrictions.eq("username", username));
+        result = getUnique(cr);
+        return result;
+    }
+
 }
