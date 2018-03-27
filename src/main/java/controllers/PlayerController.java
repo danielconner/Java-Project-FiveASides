@@ -68,6 +68,13 @@ public class PlayerController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("/players/deleted", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("user", null);
+            model.put("template", "templates/Player/delete.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("players/:id", (req, res) -> {
             int id = Integer.parseInt(req.params(":id"));
             Player player = DBHelper.find(id, Player.class);
@@ -78,6 +85,27 @@ public class PlayerController {
             model.put("template", "templates/Player/index.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+        post("/players/:id/delete", (req, res) -> {
+            int id = Integer.parseInt(req.params("id"));
+            Player toDelete = DBHelper.find(id, Player.class);
+            DBHelper.delete(toDelete);
+            res.redirect("/players/deleted");
+            return null;
+        }, new VelocityTemplateEngine());
+
+        get("/players/:id/edit", (req, res) -> {
+            int id = Integer.parseInt(req.params(":id"));
+            Player player = DBHelper.find(id, Player.class);
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("template", "templates/Player/edit.vtl");
+            model.put("user", loggedInUser);
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
+
+
     }
 
     public Day returnDayFromString(String dayAsString) {
