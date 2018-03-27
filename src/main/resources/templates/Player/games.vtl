@@ -1,0 +1,20 @@
+<h1>$player.getName()'s Signed Up for games</h1>
+
+<table>
+    <tr>
+        <th>Venue: </th>
+        <th>Organiser: </th>
+        <th>Day: </th>
+        <th>Time: </th>
+
+    </tr>
+    #foreach ($game in $games)
+    <tr>
+        <td>$game.getVenue().getName()</td>
+        <td>$player.getUsername()</td>
+        <td>$game.getDay()</td>
+        <td>$game.getTime()</td>
+
+    </tr>
+    #end
+</table>
