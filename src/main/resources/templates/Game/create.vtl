@@ -1,0 +1,29 @@
+<p class="pageHeader">New Game</p>
+
+<form action="/games" method="post">
+    <label for="title">Title:</label>
+    <input id = "title" class="inputbox" type="text" name="title" required="true">
+
+    <label for="venue">Venue: </label>
+    <select name="venue" id="venue">
+        #foreach ($venue in $venues)
+        <option value="$venue.getLocation()">$venue.getLocation()</option>
+        #end
+    </select>
+
+    <label for="required_players">Required Players:</label>
+    <input id = "required_players" type="number" name="required_players" required="true" class="inputbox">
+
+    <label for="day">Day: </label>
+    <select name="day" id="day">
+        #foreach ($day in $days)
+        <option value="$day.getDay()">$day.getDay()</option>
+        #end
+    </select>
+
+    <label for="time">Time:</label>
+    <input id = "time" class="inputbox" type="text" name="time" required="true">
+
+    <input type="submit" value="Save" class="button">
+</form>
+

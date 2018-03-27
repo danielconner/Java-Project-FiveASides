@@ -44,6 +44,11 @@ public class Runner {
         List<Player> sortedByGamesPlayed = DBHelper.sortPlayersByMostGamesPlayed();
         List<Game> upDatedGames = DBHelper.getAll(Game.class);
 
+        Player result = DBHelper.returnPlayerfromUsername("Stevey");
+
+        Venue StatedVenue = DBHelper.getVenueBasedOnLocation("Edinburgh");
+
+
 
 
     }

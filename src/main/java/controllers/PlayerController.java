@@ -30,22 +30,6 @@ public class PlayerController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-        get("/players/filter", (req, res) -> {
-            List<Player> players = DBHelper.getAll(Player.class);
-            String result = req.queryParams("day");
-            Map<String, Object> model = new HashMap<>();
-//            List<Player> filteredPlayers = new ArrayList<>();
-//            for (Player player : players) {
-//                if (player.playerByDay(result)) {
-//                    filteredPlayers.add(player);
-//                }
-//            }
-            model.put("day", result);
-//            model.put("filteredPlayers", filteredPlayers);
-            model.put("templates", "templates/Player/filter_by_day");
-            return new ModelAndView(model, "templates/layout.vtl");
-        }, new VelocityTemplateEngine());
-
 
     }
 }

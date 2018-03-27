@@ -1,15 +1,17 @@
 package controllers;
 
 import com.codeclan.db.DBHelper;
+import com.codeclan.models.Day;
 import com.codeclan.models.Game;
+import com.codeclan.models.Player;
+import com.codeclan.models.Venue;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class GameController {
 
@@ -25,7 +27,9 @@ public class GameController {
             model.put("user", loggedInUser);
             model.put("games", games);
             model.put("template", "templates/Game/show.vtl");
-            return new ModelAndView(model,"templates/layout.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
+
+
     }
 }
