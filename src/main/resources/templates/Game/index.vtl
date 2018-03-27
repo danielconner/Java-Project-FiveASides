@@ -1,0 +1,30 @@
+<p>$title</p>
+
+<table>
+<tr>
+    <th>Venue: </th>
+    <th>Organiser: </th>
+    <th>Number of Players needed: </th>
+    <th>Number of Players Signed Up: </th>
+    <th>Number of players Invited: </th>
+    <th>Day: </th>
+    <th>Time: </th>
+
+</tr>
+
+<tr>
+    <td>$venue.getLocation()</td>
+    <td>$player.getUsername()</td>
+    <td>$requiredPlayers</td>
+    <td>$signedUpPlayers.size()</td>
+    <td>$invitedPlayers.size()</td>
+    <td>$day</td>
+    <td>$time</td>
+</tr>
+
+</table>
+
+<a href="/games/$game.getId()/edit">Edit Game</a>
+<form action="/games/$game.getId()/delete" method="post">
+    <input type="submit" value="Delete" class="button center">
+</form>

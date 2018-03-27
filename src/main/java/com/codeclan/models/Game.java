@@ -110,7 +110,7 @@ public class Game {
         this.id = id;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "invited_players_invited_games",
             joinColumns = {@JoinColumn(name = "game_id", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false, updatable = false)})
@@ -141,9 +141,7 @@ public class Game {
 
 
     public void invitePlayer(Player player, Game game) {
-        if (player.playerAvailable(game) == true) {
             this.invitedPlayers.add(player);
-        }
     }
 
     public int invitedPlayerCount() {

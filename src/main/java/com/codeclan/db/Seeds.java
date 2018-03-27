@@ -11,8 +11,9 @@ import java.util.List;
 public class Seeds {
 
     public static void seedData(){
-        DBHelper.deleteAll(Game.class);
         DBHelper.deleteAll(Player.class);
+        DBHelper.deleteAll(Game.class);
+        DBHelper.deleteAll(Venue.class);
 
         List<Day> davesAvailabilty = new ArrayList<>();
         davesAvailabilty.add(Day.THURSDAY);
@@ -36,6 +37,10 @@ public class Seeds {
 
         Game game2 =  new Game("Steves Game", venue2, player2, 2, Day.TUESDAY, "20:30");
         DBHelper.save(game2);
+
+        DBHelper.addPlayerToGame(player1, game1);
+        DBHelper.invitePlayerToGame(player1, game2);
+
 
 
 

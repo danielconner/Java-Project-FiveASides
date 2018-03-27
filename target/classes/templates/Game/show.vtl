@@ -6,6 +6,7 @@
         <th>Number of Players needed: </th>
         <th>Day: </th>
         <th>Time: </th>
+        <th>View Details</th>
     </tr>
     #foreach ($game in $games)
     <tr>
@@ -15,6 +16,7 @@
         <td>$game.getNumberOfRequiredPlayer()</td>
         <td>$game.getDay()</td>
         <td>$game.getTime()</td>
+        <td><a href="/games/$game.getId()">Click here</a></td>
     </tr>
     #end
 </table>
