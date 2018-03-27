@@ -159,8 +159,8 @@ public class DBHelper {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Game.class);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        cr.createAlias("gamesAtVenue", "gamesAtVenue");
-        cr.add(Restrictions.eq("gamesAtVenue.id", venue.getId()));
+        cr.createAlias("venue", "venue");
+        cr.add(Restrictions.eq("venue.id", venue.getId()));
         return getList(cr);
 
     }
