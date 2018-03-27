@@ -146,6 +146,8 @@ public class DBHelper {
         return getList(cr);
     }
 
+
+
     public static List<Player> invitedPlayers(Game game){
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Player.class);
@@ -155,12 +157,12 @@ public class DBHelper {
         return getList(cr);
     }
 
-    public static List<Game> gamesAPlayerHasBeenInvitedTo(Player player) {
+    public static List<Game> gamesPlayerHasSignedUpFor(Player player) {
         session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Game.class);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        cr.createAlias("invitedPlayers", "invitedPlayers");
-        cr.add(Restrictions.eq("invitedPlayers.id", player.getId()));
+        cr.createAlias("players", "players");
+        cr.add(Restrictions.eq("players.id", player.getId()));
         return getList(cr);
 
     }

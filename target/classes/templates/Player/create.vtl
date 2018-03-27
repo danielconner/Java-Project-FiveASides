@@ -7,9 +7,6 @@
     <input type="text" name="name" id="name" required>
     <label for="location">Town/City: </label>
     <input type="text" name="location" id="location" required>
-    <label for="availability">Days Available: </label>
-    #foreach ($day in $days)
-    <input type="checkbox" name="availability" id="availability" value="$day">$day.getDay()</br>
-    #end
+
     <input type="submit" class="button" value="SIGN UP">
 </form>
