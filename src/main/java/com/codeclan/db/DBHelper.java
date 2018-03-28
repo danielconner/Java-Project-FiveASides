@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -121,17 +122,8 @@ public class DBHelper {
         return result;
     }
 
-    public static List<Game> gamesBasedOnLocation(String venue){
-        session =HibernateUtil.getSessionFactory().openSession();
-        List<Game> results = null;
-        Criteria cr = session.createCriteria(Game.class);
-        cr.add(Restrictions.eq("venue", venue));
-        results = getList(cr);
-        return results;
-    }
-
-    public static Player findByUsername(String username){
-        session =HibernateUtil.getSessionFactory().openSession();
+    public static Player findByUsername(String username) {
+        session = HibernateUtil.getSessionFactory().openSession();
         Player result = null;
         Criteria cr = session.createCriteria(Player.class);
         cr.add(Restrictions.eq("username", username));
@@ -139,8 +131,8 @@ public class DBHelper {
         return result;
     }
 
-    public static List<Player> playersPlaying(Game game){
-        session =HibernateUtil.getSessionFactory().openSession();
+    public static List<Player> playersPlaying(Game game) {
+        session = HibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Player.class);
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         cr.createAlias("signedUpForGames", "signedUpForGames");
@@ -149,12 +141,12 @@ public class DBHelper {
     }
 
 
-    public static void addPlayerToGame(Player player, Game game){
+    public static void addPlayerToGame(Player player, Game game) {
         game.addPlayers(player);
         save(game);
     }
 
-    public static void addGameToPlayer(Game game, Player player){
+    public static void addGameToPlayer(Game game, Player player) {
         player.signUpForGame(game);
         save(player);
     }
@@ -177,6 +169,23 @@ public class DBHelper {
         cr.add(Restrictions.eq("players.id", player.getId()));
         return getList(cr);
     }
-    
+
+    public static List<Venue> locations(String location) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Venue.class);
+        cr.add(Restrictions.eq("location", location));
+        return getList(cr);
+    }
+
+//    public static List<Game> gamesByLocation(String location) {
+//        List<Venue> venues = locations(location);
+//        List<Game> gamesAtLocation = new ArrayList<>();
+//        for (Venue venue : venues) {
+//
+//
+//
+//        }
+//    }
+
 }
 
