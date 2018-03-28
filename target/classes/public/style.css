@@ -44,7 +44,8 @@ body {
   font-size: 20px;
     margin:0;
     padding:0;
-    color: white;
+    color: beige;
+
 }
 
 header .row,
@@ -82,6 +83,7 @@ footer .footerrow {
 
 input {
   background-color: gainsboro;
+  color:grey;
 }
 
 .signupcontainer {
@@ -90,4 +92,8 @@ input {
 
 .signcontainer p{
   line-height: 50px;
+}
+
+select {
+  color: grey;
 }

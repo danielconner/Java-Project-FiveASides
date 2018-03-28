@@ -100,7 +100,7 @@ public class PlayerController {
             int id = Integer.parseInt(req.params("id"));
             Player toDelete = DBHelper.find(id, Player.class);
             DBHelper.delete(toDelete);
-            res.redirect("/players/deleted");
+            res.redirect("/");
             return null;
         }, new VelocityTemplateEngine());
 
