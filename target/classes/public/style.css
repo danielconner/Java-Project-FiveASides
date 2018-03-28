@@ -1,0 +1,44 @@
+.nav-links{
+   padding-bottom: 5px;
+   }
+
+ footer {
+   font-size: 12px;
+   padding: 20px 0;
+ }
+
+ footer .col-sm-8 {
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ footer ul {
+   list-style: none;
+ }
+
+ footer li img {
+   width: 32px;
+   height: 32px;
+ }
+
+
+ header nav {
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ header p {
+   padding: 0 20px;
+   margin: 0;
+ }
+
+body {
+    margin:0;
+    padding:0;
+}
+
+header .row,
+footer .row {
+  display: flex;
+  align-items: center;
+}
