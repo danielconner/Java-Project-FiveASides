@@ -74,6 +74,10 @@ footer .footerrow {
   font-size: 25px;
 }
 
+.login input {
+  color:grey;
+}
+
 .row img {
   margin: 0 0 30px;
   width: 500px;
@@ -96,4 +100,33 @@ input {
 
 select {
   color: grey;
+}
+
+table {
+  /* border: 1px solid rgb(65, 65, 66); */
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+table caption {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 8px 0 12px;
+}
+table tr {
+  /* background:  */
+  /* border: 1px solid rgb(65, 65, 66); */
+  padding: 5px;
+}
+table th,
+table td {
+  padding: 10px;
+  text-align: center;
+}
+table th {
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
