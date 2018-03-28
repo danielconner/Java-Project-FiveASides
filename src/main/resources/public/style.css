@@ -42,3 +42,23 @@ footer .row {
   display: flex;
   align-items: center;
 }
+
+.login {
+     background-image: url("/images/loginpage.jpeg");
+     background-size: cover;
+     color: white;
+     font-family: 'Share Tech', sans-serif;
+     position: relative;
+     top: 50px;
+}
+.login button {
+  color: grey;
+}
+
+.submit {
+  padding-bottom: 10px;
+}
+
+.login a {
+  font-size: 25px;
+}
