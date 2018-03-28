@@ -18,6 +18,7 @@ public class Game {
     private Day day;
     private String time;
 
+
     public Game() {
     }
 
@@ -117,9 +118,13 @@ public class Game {
     public void addPlayers(Player player) {
         if(this.numberOfRequiredPlayer > this.players.size()){
                 this.players.add(player);
-                this.numberOfRequiredPlayer -= 1;
+                setNumberOfRequiredPlayer(updatedRequiredPlayers());
         }
     }
+
+//    public void removeOneFromRequiredPlayers(){
+//        this.numberOfRequiredPlayer -= 1;
+//    }
 
     public int playerCount() {
         return this.players.size();

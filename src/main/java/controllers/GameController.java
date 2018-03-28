@@ -137,6 +137,7 @@ public class GameController {
             String loggedInUser = LoginController.getLoggedInUserName(req, res);
             Player player = DBHelper.findByUsername(loggedInUser);
             DBHelper.addPlayerToGame(player, game);
+            DBHelper.addGameToPlayer(game, player);
             res.redirect("/games");
             return null;
         }, new VelocityTemplateEngine());

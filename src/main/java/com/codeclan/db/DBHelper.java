@@ -37,6 +37,7 @@ public class DBHelper {
         List<T> results = null;
         try {
             transaction = session.beginTransaction();
+            criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
             results = criteria.list();
             ;
             transaction.commit();
@@ -150,9 +151,12 @@ public class DBHelper {
 
     public static void addPlayerToGame(Player player, Game game){
         game.addPlayers(player);
+        save(game);
+    }
+
+    public static void addGameToPlayer(Game game, Player player){
         player.signUpForGame(game);
         save(player);
-        save(game);
     }
 
     public static List<Game> gamesAtVenue(Venue venue) {
@@ -171,10 +175,8 @@ public class DBHelper {
         cr.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         cr.createAlias("players", "players");
         cr.add(Restrictions.eq("players.id", player.getId()));
-
         return getList(cr);
     }
-
     
 }
 

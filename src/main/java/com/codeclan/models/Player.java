@@ -47,7 +47,7 @@ public class Player {
         this.name = name;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "players_signed_up_games",
             joinColumns = {@JoinColumn(name = "player_id")},
             inverseJoinColumns = {@JoinColumn(name = "game_id")})
