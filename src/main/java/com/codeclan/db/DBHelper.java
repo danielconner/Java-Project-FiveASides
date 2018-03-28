@@ -177,6 +177,16 @@ public class DBHelper {
         return getList(cr);
     }
 
+    public static String getUserLocation(String username) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Player result = null;
+        Criteria cr = session.createCriteria(Player.class);
+        cr.add(Restrictions.eq("username", username));
+        result = getUnique(cr);
+        String location = result.getLocation();
+        return location;
+    }
+
 //    public static List<Game> gamesByLocation(String location) {
 //        List<Venue> venues = locations(location);
 //        List<Game> gamesAtLocation = new ArrayList<>();
@@ -186,6 +196,17 @@ public class DBHelper {
 //
 //        }
 //    }
+
+    public static boolean userExists(String username) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Player.class);
+        cr.add(Restrictions.eq("username", username));
+        Player user = DBHelper.getUnique(cr);
+        if (user == null) {
+            return false;
+        }
+        else {return true;}
+    }
 
 }
 
