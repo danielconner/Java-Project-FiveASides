@@ -187,6 +187,19 @@ public class DBHelper {
         return location;
     }
 
+    public static List<Game> gamesByLocation (String location) {
+        List<Venue> venues = locations(location);
+        List<Game> games = new ArrayList<>();
+        for (Venue venue : venues) {
+            List<Game> gamesAtVenue = DBHelper.gamesAtVenue(venue);
+            for (Game game : gamesAtVenue) {
+                games.add(game);
+            }
+        }
+        return games;
+    }
+
+
 //    public static List<Game> gamesByLocation(String location) {
 //        List<Venue> venues = locations(location);
 //        List<Game> gamesAtLocation = new ArrayList<>();

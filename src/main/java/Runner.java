@@ -43,6 +43,7 @@ public class Runner {
         Boolean userDoesNotExist = DBHelper.userExists("Eric");
 
         String location = DBHelper.getUserLocation("DaveBoi");
+        List<Game> glasgowGames = DBHelper.gamesByLocation("Glasgow");
 
     }
 }

@@ -24,8 +24,7 @@ public class VenueController {
         get("/venues", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String loggedInUser = LoginController.getLoggedInUserName(req, res);
-            String location = DBHelper.getUserLocation(loggedInUser);
-            List<Venue> venues = DBHelper.locations(location);
+            List<Venue> venues = DBHelper.getAll(Venue.class);
             model.put("venues", venues);
             model.put("user", loggedInUser);
             model.put("template", "templates/Venue/index.vtl");
