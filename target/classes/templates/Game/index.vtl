@@ -1,3 +1,6 @@
+<div class="container">
+    <div class="row text-center">
+
 <p>$title</p>
 
 <table>
@@ -25,9 +28,19 @@
 </tr>
 
 </table>
+</div>
+</div>
+
+
+<div class="container">
+    <div class="row text-center">
+
 #if ($player.username == $user)
 <a href="/games/$game.getId()/edit">Edit Game</a>
 <form action="/games/$game.getId()/delete" method="post">
     <input type="submit" value="Delete" class="button center">
 </form>
 #end
+
+    </div>
+</div>
