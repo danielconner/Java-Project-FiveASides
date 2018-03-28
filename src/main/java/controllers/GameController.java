@@ -27,7 +27,7 @@ public class GameController {
             String location = DBHelper.getUserLocation(loggedInUser);
             List<Game> games = DBHelper.gamesByLocation(location);
             model.put("user", loggedInUser);
-            model.put("games", games);x
+            model.put("games", games);
             model.put("template", "templates/Game/showLocal.vtl");
             return new ModelAndView(model,"templates/layout.vtl");
         }, new VelocityTemplateEngine());
