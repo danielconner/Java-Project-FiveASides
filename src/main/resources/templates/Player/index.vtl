@@ -1,3 +1,6 @@
+<div class="container">
+    <div class="row text-center">
+
 <p>PLAYER</p>
 
 <table>
@@ -16,9 +19,16 @@
 
     </tr>
 </table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center">
 #if ($player.username == $user)
 <a href="/players/$player.id/edit">Edit Your Details</a>
 <form action="/players/$player.id/delete" method="post">
     <input class="button" type="submit" value="Delete your account?">
 </form>
 #end
+    </div>
+</div>
