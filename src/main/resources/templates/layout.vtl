@@ -7,14 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet">
     <link rel="icon" href="public/football.jpeg" />
     <link rel="stylesheet" href="/style.css">
 </head>
     <body>
     <header class="container-fluid">
         <div class="row">
-            <h1 class="col-sm-8">Find-A-Sides</h1>
+            <h1 class="col-sm-8"><a href="/">Find-A-Sides</h1></a>
             <nav class="col-sm-4">
+                <p class ="nav-links"> <a href="/players">Players</a></p>
+                <p><a href="/games">Games</a></p>
+                  <p> <a href="/venues">Venues</a></p>
+
                 <p class ="nav-links"> <a href="/players">Players</a>
                     <a href="/games">Games</a>
                     <a href="/venues">Venues Near You</a></p>
@@ -23,25 +29,27 @@
         </div>
     </header>
 
+
         <!-- begin inner template-->
-        <div class="container">
+        <div>
             #parse( $template )
         </div>
+
         <!-- end inner template-->
-    <footer class="container">
-        <div class="row">
+    <footer>
+        <div class="footerrow">
             <p class="col-sm-4">&copy; 2018 DJ Production</p>
             <ul class="col-sm-8">
-                <li class="col-sm-1 offset-sm-1">
+                <li class="col-sm-1">
                     <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/twitter.svg">
                 </li>
-                <li class="col-sm-1 offset-sm-1">
+                <li class="col-sm-1">
                     <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/facebook.svg">
                 </li>
-                <li class="col-sm-1 offset-sm-1">
+                <li class="col-sm-1">
                     <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/instagram.svg">
                 </li>
-                <li class="col-sm-1 offset-sm-1">
+                <li class="col-sm-1">
                     <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/medium.svg">
                 </li>
             </ul>
