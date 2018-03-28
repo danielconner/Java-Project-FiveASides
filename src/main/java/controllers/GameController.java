@@ -142,6 +142,20 @@ public class GameController {
             return null;
         }, new VelocityTemplateEngine());
 
+        get("/games/:id/players", (req, res) -> {
+            String stringGameId = req.params(":id");
+            Integer gameIntId = Integer.parseInt(stringGameId);
+            Game game = DBHelper.find(gameIntId, Game.class);
+            List<Player> players = DBHelper.playersPlaying(game);
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            model.put("user", loggedInUser);
+            model.put("players", players);
+            model.put("game", game);
+            model.put("template", "templates/Game/players.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
     }
 
     public Day returnDayFromString(String dayAsString) {

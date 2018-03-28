@@ -1,9 +1,43 @@
-<form action="/login" method="post">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
+    <title>Find-A-Side</title>
+</head>
+<body class ="login">
+    <div class="container">
+        <div class="row text-left">
 
-<label for="username">Your Name</label>
-<input id = "username" name="username" type="text">
-<button type ="submit">Login</button>
+    <h1>Welcome to Find-a-Sides</h1>
 
-</form>
+            <h3>Your app to find players and games in your area</h3>
 
-<a href="/sign_up">Sign Up</a>
+            <h3>New to Find-a-Sides?</h3>
+
+            <h3>Sign up and start find games in your area</h3>
+
+            <h3><em>Already registered?</em> Log in below</h3>
+
+
+    <form action="/login" method="post" class="submit">
+
+        <label for="username">Your Name</label>
+        <input id = "username" name="username" type="text">
+        <button type ="submit">Login</button>
+
+    </form>
+
+    <a href="/sign_up">Sign Up</a>
+
+</div>
+    </div>
+
+</body>
+</html>
+
