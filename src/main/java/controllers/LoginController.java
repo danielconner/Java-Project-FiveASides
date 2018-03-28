@@ -1,6 +1,11 @@
 package controllers;
 
+import com.codeclan.db.DBHelper;
+import com.codeclan.db.HibernateUtil;
 import com.codeclan.models.Day;
+import com.codeclan.models.Player;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -50,11 +55,13 @@ public class LoginController {
 
     public static String getLoggedInUserName(Request req, Response res){
         String username = req.session().attribute("username");
-        if(username == null || username.isEmpty()){
+        if(username == null || username.isEmpty() || !DBHelper.userExists(username)){
             res.redirect("/login");
         }
         return username;
     }
+
+
 
 
 
