@@ -56,26 +56,6 @@ public class PlayerController {
             return null;
         }, new VelocityTemplateEngine());
 
-//        get("/players/filter", (req, res) -> {
-//
-//            List<Player> players = DBHelper.getAll(Player.class);
-//            String result = req.queryParams("day");
-//            Day filteredDay = returnDayFromString(result);
-//            Map<String, Object> model = new HashMap<>();
-//            String loggedInUser = LoginController.getLoggedInUserName(req, res);
-//            List<Player> filteredPlayers = new ArrayList<>();
-//            for (Player player : players) {
-//                if (player.availableOnDay(filteredDay)) {
-//                    filteredPlayers.add(player);
-//                }
-//            }
-//            model.put("filteredDay", filteredDay);
-//            model.put("user", loggedInUser);
-//            model.put("filteredPlayers", filteredPlayers);
-//            model.put("template", "templates/Player/filter_by_day.vtl");
-//            return new ModelAndView(model, "templates/layout.vtl");
-//        }, new VelocityTemplateEngine());
-
         get("/players/deleted", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("user", null);
@@ -127,8 +107,6 @@ public class PlayerController {
             model.put("template", "templates/Player/games.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
-
-
 
     }
 
