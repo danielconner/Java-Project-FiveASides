@@ -21,6 +21,17 @@ public class GameController {
 
     private void setupEndpoints() {
 
+        get("/games/local", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String loggedInUser = LoginController.getLoggedInUserName(req, res);
+            String location = DBHelper.getUserLocation(loggedInUser);
+            List<Game> games = DBHelper.gamesByLocation(location);
+            model.put("user", loggedInUser);
+            model.put("games", games);x
+            model.put("template", "templates/Game/showLocal.vtl");
+            return new ModelAndView(model,"templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         get("/games/:id/edit", (req, res) -> {
             String stringGameId = req.params(":id");
             Integer gameIntId = Integer.parseInt(stringGameId);
