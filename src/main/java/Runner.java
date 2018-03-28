@@ -37,6 +37,9 @@ public class Runner {
         List<Game> gamesPlayerHasSignedUpFor = DBHelper.gamesPlayerHasSignedUpFor(player2);
 
         List<Game> venuesGames = DBHelper.gamesAtVenue(venue1);
+
+        Boolean userExists = DBHelper.userExists("DaveBoi");
+        Boolean userDoesNotExist = DBHelper.userExists("Eric");
     }
 }
 

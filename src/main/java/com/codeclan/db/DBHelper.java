@@ -187,5 +187,16 @@ public class DBHelper {
 //        }
 //    }
 
+    public static boolean userExists(String username) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Player.class);
+        cr.add(Restrictions.eq("username", username));
+        Player user = DBHelper.getUnique(cr);
+        if (user == null) {
+            return false;
+        }
+        else {return true;}
+    }
+
 }
 
