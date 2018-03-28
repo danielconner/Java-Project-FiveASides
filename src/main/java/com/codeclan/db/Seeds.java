@@ -26,6 +26,10 @@ public class Seeds {
         DBHelper.save(venue1);
         Venue venue2 = new Venue("Powerleague Townhead", "Glasgow");
         DBHelper.save(venue2);
+        Venue venue3 = new Venue("Science Park", "Maryhill");
+        DBHelper.save(venue3);
+        Venue venue4 = new Venue("Broadwood", "Cumbernauld");
+        DBHelper.save(venue4);
 
         Game game1 =  new Game("Daveys Game", venue1, player1, 2, Day.THURSDAY, "19:00");
         DBHelper.save(game1);

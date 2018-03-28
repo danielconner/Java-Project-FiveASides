@@ -25,6 +25,11 @@
  header nav {
    display: flex;
    justify-content: flex-end;
+   font-family: 'Titillium Web', sans-serif;
+ }
+
+ header a{
+   color: white;
  }
 
  header p {
@@ -33,12 +38,17 @@
  }
 
 body {
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  font-family: 'Glegoo', serif;
+  font-size: 20px;
     margin:0;
     padding:0;
+    color: white;
 }
 
 header .row,
-footer .row {
+footer .footerrow {
   display: flex;
   align-items: center;
 }
@@ -61,4 +71,11 @@ footer .row {
 
 .login a {
   font-size: 25px;
+}
+
+.row img {
+  margin: 0 0 30px;
+  width: 500px;
+  height: 300px;
+  border:2px solid white;
 }
