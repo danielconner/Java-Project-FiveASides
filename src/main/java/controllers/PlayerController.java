@@ -79,6 +79,7 @@ public class PlayerController {
         post("/players/:id/delete", (req, res) -> {
             int id = Integer.parseInt(req.params("id"));
             Player toDelete = DBHelper.find(id, Player.class);
+            toDelete.removeAllGamesFromPlayer();
             DBHelper.delete(toDelete);
             res.redirect("/");
             return null;
