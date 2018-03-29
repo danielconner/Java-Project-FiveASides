@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row text-center">
+
+
+    <h1>Here's a List of all Signed up players for $game.getTitle()</h1>
+
+<table>
+    <tr>
+        <th>Username: </th>
+        <th>Name: </th>
+        <th>Location: </th>
+        <th>Number of Games Signed up for: </th>
+
+    </tr>
+    #foreach ($player in $players)
+    <tr>
+        <td>$player.username</td>
+        <td>$player.name</td>
+        <td>$player.location</td>
+        <td><a href="/players/$player.id/games">$player.getSignedUpForGames().size()</a></td>
+    </tr>
+    #end
+</table>
+
+    </div>
+</div>

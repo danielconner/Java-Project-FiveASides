@@ -1,0 +1,43 @@
+<div class="container">
+<div class="row text-center">
+    <h2>Here you can edit your game..</h2>
+    <h3>Remember to...</h3>
+    <p>Simply give your game a snappy title...</p>
+    <p>Select a venue from our signed up locations...</p>
+    <p>Enter the number of players you need...</p>
+    <p>Select the day you plan on playing...</p>
+    <p>Enter the time you want to play..</p>
+
+</div>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+<form action="/games/$game.getId()" method="post">
+
+    <label for="title">Name Your Game: </label>
+    <input type="text" id="title" name="title" required="true" value="$game.getTitle()">
+
+    <label for="venue">Venue: </label>
+    <select name="venue" id="venue" required>
+        #foreach ($venue in $venues)
+        <option value="$venue.id">$venue.name, $venue.location</option>
+        #end
+    </select>
+
+    <label for="numberOfRequiredPlayer"></label>
+    <input type="number" name="numberOfRequiredPlayer" id="numberOfRequiredPlayer" required="true" value="$game.getgetNumberOfRequiredPlayer()">
+
+    <select name="day" id="day" required>
+        #foreach ($day in $days)
+        <option value="$day.getDay()">$day.getDay()</option>
+        #end
+    </select>
+
+    <label for="time">Kick Off: </label>
+    <input type="text" name="time" id="time" required="true" value="$game.getTime()">
+
+    <input type="submit" value="Edit Game">
+</form>
+    </div>
+</div>

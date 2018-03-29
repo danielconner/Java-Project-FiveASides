@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row text-center">
+
+<p>Player Details</p>
+
+        <p>If you want to see all games a player is signed up for click the number for details of the games</p>
+
+<table>
+    <tr>
+        <th>Username: </th>
+        <th>Name: </th>
+        <th>Location: </th>
+        <th>Number of Games Signed up for: </th>
+
+    </tr>
+    <tr>
+        <td>$player.username</td>
+        <td>$player.name</td>
+        <td>$player.location</td>
+        <td><a href="/players/$player.id/games">$games.size()</a></td>
+
+    </tr>
+</table>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row text-center">
+        <p>If you want to edit your details click the link below</p>
+#if ($player.username == $user)
+<a href="/players/$player.id/edit">Edit Your Details</a>
+        <p>Leaving us? Hit the delete button to delete your account</p>
+<form action="/players/$player.id/delete" method="post">
+    <input class="button" type="submit" value="Delete your account?">
+</form>
+#end
+    </div>
+</div>

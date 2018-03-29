@@ -11,7 +11,7 @@
         <!--<property name="hibernate.connection.password"></property>-->
 
         <!--Change dbname as appropariate-->
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/powerleaguedb</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-174-129-206-173.compute-1.amazonaws.com/dfai8ko5ltm34c?user=puatrvepsaesbz&amp;password=9c49db2bbc957d94dd3639198dad2edf37d4b0e11f3847fb2176fa9a9d9c8724</property>
         <property name="connection_pool_size">1</property>
         <property name="hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>

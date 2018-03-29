@@ -1,0 +1,137 @@
+.nav-links{
+   padding-bottom: 5px;
+   }
+
+ footer {
+   font-size: 12px;
+   padding: 20px 0;
+ }
+
+ footer .col-sm-8 {
+   display: flex;
+   justify-content: flex-end;
+ }
+
+ footer ul {
+   list-style: none;
+ }
+
+ footer li img {
+   width: 32px;
+   height: 32px;
+ }
+
+
+ header nav {
+   display: flex;
+   justify-content: flex-end;
+   font-family: 'Titillium Web', sans-serif;
+ }
+
+ header a{
+   color: white;
+ }
+
+ header p {
+   padding: 0 20px;
+   margin: 0;
+ }
+
+body {
+  background-image: url("/images/background.jpg");
+  background-size: cover;
+  font-family: 'Glegoo', serif;
+  font-size: 20px;
+    margin:0;
+    padding:0;
+    color: beige;
+
+}
+
+header .row,
+footer .footerrow {
+  display: flex;
+  align-items: center;
+}
+
+.login {
+     background-image: url("/images/loginpage.jpeg");
+     background-size: cover;
+     color: white;
+     font-family: 'Share Tech', sans-serif;
+     position: relative;
+     top: 50px;
+}
+.login button {
+  color: grey;
+}
+
+.submit {
+  padding-bottom: 10px;
+}
+
+.login a {
+  font-size: 25px;
+}
+
+.login input {
+  color:grey;
+}
+
+.row img {
+  margin: 0 0 30px;
+  width: 500px;
+  height: 300px;
+  border:2px solid white;
+}
+
+input {
+  background-color: gainsboro;
+  color:grey;
+}
+
+.signupcontainer {
+  margin-top: 50px;
+}
+
+.signcontainer p{
+  line-height: 50px;
+}
+
+select {
+  color: grey;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+table caption {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 8px 0 12px;
+}
+table tr {
+  padding: 5px;
+}
+table th,
+table td {
+  padding: 10px;
+  text-align: center;
+}
+table th {
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: lowercase;
+}
+
+a {
+  color: #e2fffc;
+}
+
+.warning {
+  color:red;
+}
