@@ -116,9 +116,10 @@ public class Game {
     }
 
     public void addPlayers(Player player) {
-        if(this.numberOfRequiredPlayer > this.players.size()){
+        if(updatedRequiredPlayers() > 0){
                 this.players.add(player);
-                setNumberOfRequiredPlayer(updatedRequiredPlayers());
+//                setNumberOfRequiredPlayer(updatedRequiredPlayers());
+//            this.numberOfRequiredPlayer -= 1;
         }
     }
 
