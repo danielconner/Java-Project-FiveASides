@@ -103,5 +103,9 @@ public class Player {
         this.location = location;
     }
 
+    public void removeAllGamesFromPlayer(){
+        this.signedUpForGames.clear();
+    }
+
 
 }
