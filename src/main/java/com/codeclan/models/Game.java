@@ -69,7 +69,7 @@ public class Game {
         this.numberOfRequiredPlayer = numberOfRequiredPlayer;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "players_signed_up_games",
             joinColumns = {@JoinColumn(name = "game_id", nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "player_id", nullable = false)})
@@ -128,6 +128,10 @@ public class Game {
 
     public int playerCount() {
         return this.players.size();
+    }
+
+    public void removeAllPlayersFromGame(){
+        this.players.clear();
     }
 
 
