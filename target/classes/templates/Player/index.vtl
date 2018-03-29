@@ -1,7 +1,9 @@
 <div class="container">
     <div class="row text-center">
 
-<p>PLAYER</p>
+<p>Player Details</p>
+
+        <p>If you want to see all games a player is signed up for click the number for details of the games</p>
 
 <table>
     <tr>
@@ -24,8 +26,10 @@
 
 <div class="container">
     <div class="row text-center">
+        <p>If you want to edit your details click the link below</p>
 #if ($player.username == $user)
 <a href="/players/$player.id/edit">Edit Your Details</a>
+        <p>Leaving us? Hit the delete button to delete your account</p>
 <form action="/players/$player.id/delete" method="post">
     <input class="button" type="submit" value="Delete your account?">
 </form>
