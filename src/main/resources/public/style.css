@@ -133,5 +133,8 @@ table th {
 
 a {
   color: #e2fffc;
+}
 
+.warning {
+  color:red;
 }
