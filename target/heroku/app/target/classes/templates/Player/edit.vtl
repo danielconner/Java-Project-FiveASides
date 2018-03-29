@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row text-center">
+
+<p>Change your details here, remember games will need players no matter where you are.</p>
+
+<form action="/players/$player.id/edit" method="post">
+    <label for="username">Username: </label>
+    <input type="text" name="username" id="username" required value="$player.username">
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" required value="$player.name">
+    <label for="location">Location: </label>
+    <input type="text" name="location" id="location" required value="$player.location">
+    <input type="submit" class="button" value="Submit new details?">
+</form>
+
+    </div>
+</div>

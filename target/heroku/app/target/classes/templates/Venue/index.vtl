@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row text-center">
+<form action="/venues/games" method="get">
+    <select name="venue" id="venue">
+        #foreach ($venue in $venues)
+        <option value="$venue.id">$venue.name, $venue.location</option>
+        #end
+    </select>
+    <input type="submit" class="button" value="See Games At Venue?">
+</form>
+    </div>
+</div>

@@ -14,7 +14,7 @@
     #foreach ($game in $games)
     <tr>
         <td>$game.getVenue().getName()</td>
-        <td>$player.getUsername()</td>
+        <td>$game.getOrganiser().getName()</td>
         <td>$game.getDay()</td>
         <td>$game.getTime()</td>
 
