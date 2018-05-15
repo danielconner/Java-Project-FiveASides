@@ -11,7 +11,7 @@
         <!--<property name="hibernate.connection.password"></property>-->
 
         <!--Change dbname as appropariate-->
-        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-225-249-161.compute-1.amazonaws.com/d1u684njfmn1vk?user=pxceqzzobcoqmu&amp;password=eff4e6e9e99bacdfe87cbdb499fb961672df1acf2d2adee023deaff77c9a77be</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://ec2-54-225-249-161.compute-1.amazonaws.com/ d411784ph3jjb3?user=ezvnvelyocfhtu&amp;password=377fbf3f68f92ef88b32fa406d9a85acfcbb8b95002594205b41b480eea8d8ff</property>
         <property name="connection_pool_size">1</property>
         <property name="hbm2ddl.auto">create-drop</property>
         <property name="show_sql">true</property>

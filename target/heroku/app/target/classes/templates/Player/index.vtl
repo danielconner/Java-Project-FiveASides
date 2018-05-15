@@ -27,7 +27,7 @@
 <div class="container">
     <div class="row text-center">
         <p>If you want to edit your details click the link below</p>
-#if ($player.username == $user || $player.username == admin)
+#if ($player.username == $user)
 <a href="/players/$player.id/edit">Edit Your Details</a>
         <p>Leaving us? Hit the delete button to delete your account</p>
 <form action="/players/$player.id/delete" method="post">
